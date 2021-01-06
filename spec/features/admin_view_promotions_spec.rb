@@ -19,6 +19,8 @@ feature 'Admin view promotions' do
     expect(page).to have_content('Cyber Monday')
     expect(page).to have_content('Promoção de Cyber Monday')
     expect(page).to have_content('15,00%')
+    expect(page).to_not have_content('Nenhuma promoção cadastrada')
+    expect(page).to have_link('Voltar', href: root_path)
   end
 
   scenario 'and view details' do
@@ -30,8 +32,8 @@ feature 'Admin view promotions' do
                       code: 'CYBER15', discount_rate: 15,
                       expiration_date: '22/12/2033')
 
-    visit root_path
-    click_on 'Promoções'
+    visit promotions_path
+    #teste atualizado após passar pelo primeiro teste
     click_on 'Cyber Monday'
 
     expect(page).to have_content('Cyber Monday')
@@ -62,9 +64,10 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotions page' do
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+    promotion = Promotion.create!(name: 'Natal', 
+                                  description: 'Promoção de Natal',
+                                  code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                  expiration_date: '22/12/2033')
 
     visit root_path
     click_on 'Promoções'
