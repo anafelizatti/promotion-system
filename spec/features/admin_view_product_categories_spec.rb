@@ -15,5 +15,12 @@ feature 'Admin view product categories' do
     expect(page).to have_content('EMAIL')
 
     end
+
+    xscenario 'and show empty message' do
+    end
+
+    xscenario 'and view details' do 
+    end
+
     
 end
