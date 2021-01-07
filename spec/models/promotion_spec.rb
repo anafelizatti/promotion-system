@@ -4,6 +4,7 @@ describe Promotion do
   context 'validation' do
     it 'attributes cannot be blank' do
       promotion = Promotion.new
+      promotion.save
 
       promotion.valid?
 
