@@ -3,12 +3,12 @@ require 'rails_helper'
 feature 'Admin edits a promotion' do
   
   scenario 'sucessfully' do
+    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
+                      code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
     visit promotions_path
-    click_on @promotion.name
+    click_on promotion.name
     click_on 'Editar'
-  end
-  
-  scenario 'sucessfully' do
     fill_in 'Nome', with: 'Dia do consumidor'
     fill_in 'Descrição', with: 'Promoção dia do consumidor'
     fill_in 'Código', with: 'CONSUMIDOR10'
@@ -18,7 +18,6 @@ feature 'Admin edits a promotion' do
     click_on 'Criar promoção'
     visit promotions_path
     click_on 'Dia do consumidor'
-    
     expect(page).to have_content('Dia do consumidor')
     expect(page).to have_content('Promoção dia do consumidor')
     expect(page).to have_content('CONSUMIDOR10')
