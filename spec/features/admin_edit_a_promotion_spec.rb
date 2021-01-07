@@ -15,7 +15,7 @@ feature 'Admin edits a promotion' do
     fill_in 'Desconto', with: '20'
     fill_in 'Quantidade de cupons', with: '200'
     fill_in 'Data de término', with: '20/12/2022'
-    click_on 'Salvar'
+    click_on 'Criar promoção'
     visit promotions_path
     click_on 'Dia do consumidor'
     
