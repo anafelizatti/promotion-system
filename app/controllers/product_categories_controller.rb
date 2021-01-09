@@ -1,5 +1,5 @@
 class ProductCategoriesController < ApplicationController
-before_action :set_product_categories, only: %i[show]
+before_action :set_product_categories, only: %i[show destroy edit update]
     
     def index
         @product_categories = ProductCategory.all
@@ -10,6 +10,20 @@ before_action :set_product_categories, only: %i[show]
     end
 
     def show;end
+    def edit;end
+
+    def update
+        if @product_categories.update(product_categories_params)
+          redirect_to product_categories_path
+        else
+          render :edit
+        end
+    end
+
+    def destroy
+        @product_categories.destroy
+        redirect_to product_categories_path
+    end
 
     def create
         @product_categories = ProductCategory.new(product_categories_params)
