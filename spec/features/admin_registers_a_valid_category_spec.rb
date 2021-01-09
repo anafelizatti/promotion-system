@@ -14,4 +14,24 @@ feature 'Admin registers a valid category' do
     expect(page).to have_content('HOSP')
     expect(page).to have_link('Voltar')
   end
+
+  scenario 'and attributes cannot be blank' do
+    visit product_categories_path
+    click_on 'Registrar uma categoria'
+    click_on 'Criar categoria'
+    expect(page).to have_content('não pode ficar em branco', count: 2)
+  end
+
+  scenario 'and code must be unique' do
+    category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
+    
+    visit product_categories_path
+    click_on 'Registrar uma categoria'
+    fill_in 'Nome', with: 'SITES'
+    fill_in 'Código', with: 'HOSP'
+    click_on 'Criar categoria'
+
+    expect(page).to have_content('deve ser único')
+  end
+
 end

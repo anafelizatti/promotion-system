@@ -1,5 +1,12 @@
+<% if @product_categories.errors.any? %>
+<ul>
+    <% @product_categories.errors.full_messages.each do |message| %>
+        <li> <%= message %> </li>
+    <% end %>
+</ul>
+<% end %>
 
-<%= form_with model: @product_categories do |f| %>
+<%= form_with model: @product_categories, local: true do |f| %>
 <%= f.label :name, 'Nome' %>
 <%= f.text_field :name %>
 <%= f.label :code, 'Código' %>
