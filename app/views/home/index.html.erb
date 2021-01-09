@@ -1,12 +1,21 @@
-<h1>Promotion System</h1>
-<p>Boas vindas ao sistema de gestão de promoções </p>
-
+<hr>
+<strong>
+  <center><h2 style ="color:Navy;"> Promotion System  </h2> 
+</strong>
+<p style="color:SteelBlue">Boas vindas ao sistema de gestão de promoções </p>
+</center>
+<hr>
+<center>
 <% if user_signed_in? %>
     <p> <%= current_user.email %> </p>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
 <% else %>
     <%= link_to 'Login', new_user_session_path %>
 <% end %>
-
+<br>
+<br>
 <%= link_to 'Promoções', promotions_path %>
+<br>
+<br>
 <%= link_to 'Categorias de produtos', product_categories_path %>
+</center>

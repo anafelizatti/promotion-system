@@ -1,16 +1,12 @@
-<% if @product_categories.errors.any? %>
-<ul>
-    <% @product_categories.errors.full_messages.each do |message| %>
-        <li> <%= message %> </li>
-    <% end %>
-</ul>
-<% end %>
+<hr>
+<strong>
+  <p style ="color:CadetBlue;"> Nova categoria de produto  </p>
+</strong>
+<hr>
 
-<%= form_with model: @product_categories, local: true do |f| %>
-<%= f.label :name, 'Nome' %>
-<%= f.text_field :name %>
-<%= f.label :code, 'Código' %>
-<%= f.text_field :code %>
-<%= f.submit 'Criar categoria'  %>
-
-<% end %>
+<%= render 'form', product_categories: @product_categories %>
+<br>
+<%= link_to 'VOLTAR', product_categories_path %>
+<br>
+<br>
+<%= link_to 'HOME', root_path %>
