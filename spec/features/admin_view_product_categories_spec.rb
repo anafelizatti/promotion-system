@@ -16,11 +16,24 @@ feature 'Admin view product categories' do
 
     end
 
-    xscenario 'and show empty message' do
+    scenario 'and show empty message' do
+        visit root_path
+        click_on 'Categorias de produto'
+        expect(page).to have_content('Nenhuma categoria cadastrada')
     end
 
-    xscenario 'and view details' do 
-    end
+    scenario 'and view details' do
+        category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
+        visit product_categories_path
 
-    
+        click_on 'Hospedagem'
+        expect(page).to have_content('Hospedagem')
+        expect(page).to have_content('HOSP')
+
+        click_on 'Voltar'
+        expect(current_path).to eq product_categories_path
+
+        click_on 'HOME'
+        expect(current_path).to eq root_path
+    end
 end
