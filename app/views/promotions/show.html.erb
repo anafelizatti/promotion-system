@@ -18,9 +18,22 @@
     <dd> <%= @promotion.coupon_quantity %> </dd>
   </dl>
 
+  <% if @promotion.coupons.empty? %>
+    <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %>
+  <% else %>
+    <h1> Cupons </h1>
+      <% @promotion.coupons.each do |coupon| %>
+        <dl>
+          <dt>Código</dt>
+          <dd><%=coupon.code %></dd>
+        </dl>
+      <% end %>
+    <% end %>
+
   <%= link_to 'Voltar', promotions_path %>
   <%= link_to 'Editar', edit_promotion_path(@promotion) %>
   <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+
 
 <% else %>
 <%= link_to 'Login', new_user_session_path %>
