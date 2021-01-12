@@ -2,10 +2,14 @@ require 'rails_helper'
 
 feature 'Admin edits a promotion' do
   
-  scenario 'sucessfully' do
+  scenario 'if logged in' do
     promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
                       code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
+                      
+    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    login_as user, scope: :user
+
     visit promotions_path
     click_on promotion.name
     click_on 'Editar'
@@ -25,6 +29,15 @@ feature 'Admin edits a promotion' do
     expect(page).to have_content('20/12/2022')
     expect(page).to have_content('200')
     expect(page).to have_link('Voltar')
+  end
+
+  scenario 'and cannot edit unless logged in' do
+    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
+      code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
+      expiration_date: '22/12/2033')
+
+    visit edit_promotion_path(promotion)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
 
 end

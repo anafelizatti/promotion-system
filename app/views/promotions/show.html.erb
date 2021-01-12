@@ -1,23 +1,28 @@
-<hr>
-<strong>
-  <p style ="color:CadetBlue;"> <%= @promotion.name %> </p>
-</strong>
-<hr>
+<% if user_signed_in? %>
+  <hr>
+  <strong>
+    <p style ="color:CadetBlue;"> <%= @promotion.name %> </p>
+  </strong>
+  <hr>
 
-<strong><h3> <%= @promotion.description %> </h3></strong>
+  <strong><h3> <%= @promotion.description %> </h3></strong>
 
-<dl>
-  <dt> Desconto em porcentagem </dt>
-  <dd> <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %> </dd>
-  <dt> Código </dt>
-  <dd> <%= @promotion.code %> </dd>
-  <dt> Data de término </dt>
-  <dd> <%= @promotion.expiration_date.strftime('%d/%m/%Y') %> </dd>
-  <dt> Número de cupons </dt>
-  <dd> <%= @promotion.coupon_quantity %> </dd>
-</dl>
+  <dl>
+    <dt> Desconto em porcentagem </dt>
+    <dd> <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %> </dd>
+    <dt> Código </dt>
+    <dd> <%= @promotion.code %> </dd>
+    <dt> Data de término </dt>
+    <dd> <%= @promotion.expiration_date.strftime('%d/%m/%Y') %> </dd>
+    <dt> Número de cupons </dt>
+    <dd> <%= @promotion.coupon_quantity %> </dd>
+  </dl>
 
-<%= link_to 'Voltar', promotions_path %>
-<%= link_to 'Editar', edit_promotion_path(@promotion) %>
-<%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+  <%= link_to 'Voltar', promotions_path %>
+  <%= link_to 'Editar', edit_promotion_path(@promotion) %>
+  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+
+<% else %>
+<%= link_to 'Login', new_user_session_path %>
+<% end %>
 

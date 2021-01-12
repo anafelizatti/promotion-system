@@ -1,4 +1,4 @@
-
+<% if user_signed_in? %>
 <hr>
 <strong>
   <p style ="color:CadetBlue;"> Editar promoção  </p>
@@ -11,3 +11,7 @@
 <br>
 <br>
 <%= link_to 'HOME', root_path %>
+
+<% else %>
+<%= link_to 'Login', new_user_session_path %>
+<% end %>
