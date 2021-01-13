@@ -6,6 +6,7 @@ class Promotion < ApplicationRecord
   validates :code, uniqueness: true
 
   def generate_coupons!
+    raise 'Cupons já foram gerados' if coupons.any?
     codes = 
       (1..coupon_quantity).map do |number|
         { code: "#{code}-#{'%04d' % number}"}

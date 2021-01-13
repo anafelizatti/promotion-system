@@ -29,4 +29,24 @@ describe Promotion do
       expect(promotion.errors[:code]).to include('já está em uso')
     end
   end
+
+  #context é como se fosse feature que é como o describe, e o it é como se fosse um scenario.
+  context '#generate_coupons!' do 
+    it 'of a promotion without coupons' do
+      promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
+                                    discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
+      
+      promotion.generate_coupons!
+
+      expect { promotion.generate_coupons! }.to raise_error('Cupons já foram gerados')
+      expect(promotion.coupons.count).to eq(promotion.coupon_quantity)
+      expect(promotion.coupons.map(&:code)).to contain_exactly(
+        'PASCOA10-0001','PASCOA10-0002','PASCOA10-0003'
+      )
+
+    end
+  end
+    
+
+
 end
