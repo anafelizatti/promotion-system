@@ -10,19 +10,23 @@
   </head>
 
   <body>
-  <nav>
-  <% if user_signed_in? %>
-    <p> <%= current_user.email %> </p>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    <%= link_to 'Promoções', promotions_path %>
-    <%= link_to 'Categorias de produtos', product_categories_path %>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %>
-  <% end %>
-  </nav>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <p><%= flash[:success] %> </p>
+  
   <%= yield %>
+  
+  <nav>
+  <% if user_signed_in? %>
+  <hr>
+    <em><center> <%= current_user.email %> </p></center></em>
+    <center><i><%= link_to 'Logout', destroy_user_session_path, method: :delete %></center></i>
+    <br>
+    <ul>
+    <p><li><strong><%= link_to 'Promoções', promotions_path %></strong></li></p>
+    <p><li><strong><%= link_to 'Categorias de produtos', product_categories_path %></strong></li></p>
+    </ul>
+  <% end %>
+  </nav>
   </body>
 </html>

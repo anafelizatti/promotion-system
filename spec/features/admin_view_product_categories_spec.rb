@@ -56,7 +56,7 @@ feature 'Admin view product categories' do
     
         expect(page).to_not have_content('Hospedagem')
         expect(page).to_not have_link('Categorias de produto')
-        expect(page).to have_content('Login')
+        expect(page).to have_content('Para continuar, efetue login ou registre-se')
     end
 
     scenario 'and cannot view category details unless logged in via link' do
@@ -73,7 +73,7 @@ feature 'Admin view product categories' do
     scenario 'and cannot view category edit unless logged in via link' do
         category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
         visit edit_product_category_path(category)
-        expect(page).to have_content('Login')
+        expect(page).to have_content('Para continuar, efetue login ou registre-se')
     end
 
 end

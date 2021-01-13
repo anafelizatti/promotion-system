@@ -1,9 +1,13 @@
 <hr>
 <strong>
-  <center><h2 style ="color:Navy;"> Promotion System  </h2> 
+  <center><h1 style ="color:Navy;"> Promotion System  </h1> 
 </strong>
 <p style="color:SteelBlue">Boas vindas ao sistema de gestão de promoções </p>
 <hr>
+<% if !user_signed_in? %>
+<%= link_to 'Login', new_user_session_path %>
+<p style="color:Navy;"> Faça login ou registre-se para acessar as funcionalidades </p>
+<% end %>
 <br>
 <br>
 </center>
