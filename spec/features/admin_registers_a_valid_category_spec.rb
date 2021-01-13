@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Admin registers a valid category' do
 
   scenario 'successfully' do
+    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    login_as user, scope: :user
     visit root_path
     click_on 'Categorias de produto'
     click_on 'Registrar uma categoria'
@@ -16,6 +18,8 @@ feature 'Admin registers a valid category' do
   end
 
   scenario 'and attributes cannot be blank' do
+    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    login_as user, scope: :user
     visit product_categories_path
     click_on 'Registrar uma categoria'
     click_on 'Criar categoria'
@@ -24,6 +28,8 @@ feature 'Admin registers a valid category' do
 
   scenario 'and code must be unique' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
+    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    login_as user, scope: :user
     
     visit product_categories_path
     click_on 'Registrar uma categoria'

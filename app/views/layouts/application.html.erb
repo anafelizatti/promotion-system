@@ -15,12 +15,13 @@
     <p> <%= current_user.email %> </p>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     <%= link_to 'Promoções', promotions_path %>
+    <%= link_to 'Categorias de produtos', product_categories_path %>
   <% else %>
     <%= link_to 'Login', new_user_session_path %>
   <% end %>
   </nav>
   <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>´
+  <p class="alert"><%= alert %></p>
   <p><%= flash[:success] %> </p>
   <%= yield %>
   </body>

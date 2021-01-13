@@ -19,4 +19,13 @@ feature 'Admin destroys a promotion' do
     expect(current_path).to eq promotions_path
   end
 
+  scenario 'cannot delete unless logged in' do
+    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
+                      code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+    visit promotions_path(promotion)
+    expect(page).to_not have_content(promotion)
+    expect(page).to have_content('Para continuar, efetue login ou registre-se')
+  end
+
 end
