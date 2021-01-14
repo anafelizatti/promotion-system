@@ -1,0 +1,20 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      coupon:
+        one: Cupom
+        other: Cupons
+    attributes:
+      coupon:
+        code: Código
+      coupon/status:
+        active: disponível
+        inactivate: cancelado
+  coupons:
+    inactivate: 
+      sucess: Cupom cancelado com sucesso
+    coupon:
+      inactivate: Descartar cupom
+        
+

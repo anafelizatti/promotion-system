@@ -13,3 +13,6 @@ pt-BR:
         discount_rate: 'Desconto'
         coupon_quantity: 'Quantidade de cupons'
         expiraton_date: 'Data de término'
+  promotions:
+    show:
+      inactivate_cupon: 'Descartar cupom'

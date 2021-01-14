@@ -22,13 +22,7 @@
     <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %>
   <% else %>
     <h1> Cupons </h1>
-      <% @promotion.coupons.each do |coupon| %>
-        <dl>
-          <dt>Código</dt>
-          <dd><%=coupon.code %></dd>
-        </dl>
-        <%= link_to 'Descartar cupom', inactivate_coupon_path(coupon), method: :post %>
-      <% end %>
+    <%= render @promotion.coupons %>
     <% end %>
 
   <%= link_to 'Voltar', promotions_path %>

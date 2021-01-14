@@ -15,9 +15,9 @@ feature 'Admin inactivate coupon' do
       click_on 'Descartar cupom'
 
       expect(page).to have_content('Cupom cancelado com sucesso')
-      expect(page).to have_content('CYBER15-0001 (cancelado)')
+      expect(page).to have_content('CYBER-0001 (cancelado)')
       expect(page).to_not have_link('Descartar cupom')
-      #expect(coupon).to be_inactive
+      expect(coupon.reload).to be_inactivate
     end
 
 end

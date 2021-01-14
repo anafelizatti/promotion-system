@@ -12,9 +12,9 @@ feature 'Admin generates coupons' do
     click_on promotion.name
     expect(current_path).to eq(promotion_path(promotion))
     click_on 'Emitir Cupons'
-    expect(page).to have_content('PASCOA10-0001')
-    expect(page).to have_content('PASCOA10-0002')
-    expect(page).to have_content('PASCOA10-0003')
+    expect(page).to have_content('PASCOA10-0001 (disponível)')
+    expect(page).to have_content('PASCOA10-0002 (disponível)')
+    expect(page).to have_content('PASCOA10-0003 (disponível)')
     expect(page).to have_content('Cupons gerados com sucesso')
     expect(page).to_not have_link('Emitir Cupons')
     end
