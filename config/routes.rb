@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     post 'inactivate', on: :member
   end
 
+  resources :coupons, only: [] do
+    post 'active', on: :member
+  end
+
   namespace 'api' do
     namespace 'v1' do
       get 'coupons/:code', to: 'coupons#show'

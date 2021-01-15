@@ -3,11 +3,10 @@ module Api
         class CouponsController < ApiController
             
             def show
-                @coupon = Coupon.find_by(code: params[:code]) #acha o cupom pelo seu código de cupom, único
-                #@json = @coupon.to_json #transformar em json
+                @coupon = Coupon.find_by(code: params[:code])
                 json = {discount: @coupon.promotion.discount_rate, 
                         expiration_date: I18n.l(@coupon.promotion.expiration_date)}
-                render json: json, status: 200 #:ok
+                render json: json, status: 200
             end
 
         end
