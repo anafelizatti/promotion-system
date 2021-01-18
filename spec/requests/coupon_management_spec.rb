@@ -31,6 +31,42 @@ describe 'Coupon management' do
 
     end
 
+    context 'burn' do
+        it 'change coupon status' do
+            promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
+                                        description: 'Promoção de Cyber Monday',
+                                        code: 'CYBER15', discount_rate: 15,
+                                        expiration_date: '22/12/2033')
+            coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
+
+            post "/api/v1/coupons/#{coupon.code}/burn", params: { order: { code: 'ORDER123'} }
+
+            expect(response).to have_http_status(:ok)
+            expect(response.body).to include('Cupom utilizado com sucesso')
+            expect(coupon.reload).to be_burn
+            expect(coupon.reload.order).to eq('ORDER123')
+        end
+
+        xit 'coupon not found by code' do
+        end
+
+        it 'order must exist' do
+            promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
+            description: 'Promoção de Cyber Monday',
+            code: 'CYBER15', discount_rate: 15,
+            expiration_date: '22/12/2033')
+            coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
+
+            post "/api/v1/coupons/#{coupon.code}/burn", params: { order: [:code] }
+
+            expect(response).to have_http_status(412)
+        end
+        
+        xit 'order and code must exist' do 
+        end
+
+    end
+
 end
 
 

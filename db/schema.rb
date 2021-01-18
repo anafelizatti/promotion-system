@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_202516) do
+ActiveRecord::Schema.define(version: 2021_01_18_200601) do
 
   create_table "coupons", force: :cascade do |t|
     t.integer "promotion_id", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_01_13_202516) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
+    t.string "order"
     t.index ["promotion_id"], name: "index_coupons_on_promotion_id"
   end
 

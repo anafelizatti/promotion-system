@@ -18,8 +18,12 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      get 'coupons/:code', to: 'coupons#show'
-    end 
+      resources :coupons, param: :code, only: %i[show] do
+        post 'burn', on: :member
+      end
+      #get 'coupons/:code', to: 'coupons#show'
+      #post 'coupons/:code/burn', to: 'coupons#burn'
+      end 
   end
 
 end
