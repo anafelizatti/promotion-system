@@ -18,6 +18,17 @@ describe 'Coupon management' do
             expect(response.body).to include('22/12/2033')
         end
 
+        it 'coupon not found' do 
+            get "/api/v1/coupons/ABCD123"
+            expect(response).to have_http_status(:not_found)
+            expect(response.body).to include('Cupom não encontrado')
+        end
+
+        #TODO fazer esse teste passar
+        xit 'coupon with expired promotion' do
+        end
+        
+
     end
 
 end
