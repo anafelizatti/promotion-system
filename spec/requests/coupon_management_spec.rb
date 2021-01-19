@@ -9,7 +9,7 @@ describe 'Coupon management' do
             description: 'Promoção de Cyber Monday',
             code: 'CYBER15', discount_rate: 15,
             expiration_date: '22/12/2033')
-            coupon = Coupon.create!(promotion: promotion, code: 'CYBER-0001')
+            coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
 
             get "/api/v1/coupons/#{coupon.code}"
 
@@ -20,7 +20,7 @@ describe 'Coupon management' do
 
         it 'coupon not found' do 
             get "/api/v1/coupons/ABCD123"
-            expect(response).to have_http_status(:not_found)
+            expect(response).to have_http_status(404)
             expect(response.body).to include('Cupom não encontrado')
         end
 
@@ -38,14 +38,15 @@ describe 'Coupon management' do
                                         code: 'CYBER15', discount_rate: 15,
                                         expiration_date: '22/12/2033')
             coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
-
+      
             post "/api/v1/coupons/#{coupon.code}/burn", params: { order: { code: 'ORDER123'} }
-
+      
             expect(response).to have_http_status(:ok)
             expect(response.body).to include('Cupom utilizado com sucesso')
             expect(coupon.reload).to be_burn
             expect(coupon.reload.order).to eq('ORDER123')
-        end
+          end
+      
 
         xit 'coupon not found by code' do
         end
@@ -57,12 +58,21 @@ describe 'Coupon management' do
             expiration_date: '22/12/2033')
             coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
 
-            post "/api/v1/coupons/#{coupon.code}/burn", params: { order: [:code] }
+            post "/api/v1/coupons/#{coupon.code}/burn", params: {}
 
             expect(response).to have_http_status(412)
         end
         
-        xit 'order and code must exist' do 
+        it 'order and code must exist' do 
+            promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
+                                  description: 'Promoção de Cyber Monday',
+                                  code: 'CYBER15', discount_rate: 15,
+                                  expiration_date: '22/12/2033')
+            coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
+
+            post "/api/v1/coupons/#{coupon.code}/burn", params: { order: { code: '' } }
+
+            expect(response).to have_http_status(422)
         end
 
     end
