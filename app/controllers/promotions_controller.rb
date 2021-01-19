@@ -1,7 +1,7 @@
 class PromotionsController < ApplicationController
-  before_action :set_promotion, only: %i[show edit update destroy generate_coupons]
   before_action :authenticate_user!
-
+  before_action :set_promotion, only: %i[show edit update destroy generate_coupons]
+ 
   def index
     if params[:search]
       @promotions = Promotion.search(params[:search])
