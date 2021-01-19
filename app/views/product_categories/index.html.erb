@@ -6,8 +6,15 @@
 </strong>
         <br>
         <%= link_to 'Registrar uma categoria', new_product_category_path %>
+        <br>
+        <br>
+        <%= form_tag(product_categories_path, method: :get) do %>
+            <%= text_field_tag 'search', nil, placeholder: 'Buscar categoria' %>
+            <%= submit_tag 'Pesquisar' %>
+        <% end %>
     </center>
 <hr>
+
 <% if @product_categories.empty? %>
     <p>Nenhuma categoria cadastrada </p>
 <% else %>

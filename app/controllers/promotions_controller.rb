@@ -3,7 +3,11 @@ class PromotionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @promotions = Promotion.all
+    if params[:search]
+      @promotions = Promotion.search(params[:search])
+    else
+      @promotions = Promotion.all
+    end
   end
 
   def show;end

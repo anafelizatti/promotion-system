@@ -5,8 +5,15 @@
   <h2 style ="color:CadetBlue;"> Promoções </h2>
 </strong>
 <br>
-<%= link_to 'Registrar uma promoção', new_promotion_path %>
-</center>
+  <%= link_to 'Registrar uma promoção', new_promotion_path %>
+<br>
+        <br>
+        <%= form_tag(promotions_path, method: :get) do %>
+            <%= text_field_tag 'search', nil, placeholder: 'Buscar promoção' %>
+            <%= submit_tag 'Pesquisar' %>
+        <% end %>
+  </center>
+
 <hr>
 <% @promotions.each do |promotion| %>
   <h3> <%= link_to promotion.name, promotion %></h3>

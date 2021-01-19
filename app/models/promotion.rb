@@ -4,6 +4,8 @@ class Promotion < ApplicationRecord
   validates :name, :code, :discount_rate, :coupon_quantity, :expiration_date,  
             presence: true
   validates :code, uniqueness: true
+  scope :search, ->(query) {where('name like ? OR description like ? OR code like ?',
+  "%#{query}%", "%#{query}%", "%#{query}%")}
 
   def generate_coupons!
     raise 'Cupons já foram gerados' if coupons.any?

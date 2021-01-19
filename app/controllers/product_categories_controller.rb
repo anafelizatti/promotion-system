@@ -3,7 +3,11 @@ before_action :set_product_categories, only: %i[show destroy edit update]
 before_action :authenticate_user!
     
     def index
-        @product_categories = ProductCategory.all
+        if params[:search]
+            @product_categories = ProductCategory.search(params[:search])
+          else
+            @product_categories = ProductCategory.all
+        end
     end
 
     def new
