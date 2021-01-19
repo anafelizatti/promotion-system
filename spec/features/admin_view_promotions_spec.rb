@@ -23,7 +23,6 @@ feature 'Admin view promotions' do
     expect(page).to have_content('Promoção de Cyber Monday')
     expect(page).to have_content('15,00%')
     expect(page).to_not have_content('Nenhuma promoção cadastrada')
-    expect(page).to have_link('Voltar', href: root_path)
   end
 
   scenario 'and view details' do
@@ -71,8 +70,7 @@ feature 'Admin view promotions' do
 
     visit root_path
     click_on 'Promoções'
-    click_on 'Voltar'
-
+    click_on 'Página Inicial'
     expect(current_path).to eq root_path
   end
 

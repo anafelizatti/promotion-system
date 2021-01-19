@@ -4,16 +4,12 @@
   <center>
   <h2 style ="color:CadetBlue;"> Promoções </h2>
 </strong>
-<br>
-  <%= link_to 'Registrar uma promoção', new_promotion_path %>
-<br>
         <br>
         <%= form_tag(promotions_path, method: :get) do %>
             <%= text_field_tag 'search', nil, placeholder: 'Buscar promoção' %>
             <%= submit_tag 'Pesquisar' %>
         <% end %>
   </center>
-
 <hr>
 <% @promotions.each do |promotion| %>
   <h3> <%= link_to promotion.name, promotion %></h3>
@@ -21,11 +17,14 @@
   <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %> </p>
 <% end %>
 
+<center>
 <% if @promotions.empty? %>
 <p>Nenhuma promoção cadastrada </p>
 <% end %>
-
-<%= link_to 'Voltar', root_path %>
+<br>
+  <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %>
+<br>
+</center>
 
 <% else %>
 <%= link_to 'Login', new_user_session_path %>

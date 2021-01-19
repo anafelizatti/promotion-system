@@ -1,10 +1,10 @@
-
-<dl>
-    <dt>Código</dt>
-    <dd><%=coupon.title %>)</dd>
-</dl>
+<br>
+<strong>Código</strong>
+<dd><%=coupon.title %></dd>
 <%if coupon.active? %>
     <%= link_to t('.inactivate'), inactivate_coupon_path(coupon), method: :post %>
 <% else %>
     <%= link_to t('.active'), active_coupon_path(coupon), method: :post %>
 <% end %>
+<br>
+

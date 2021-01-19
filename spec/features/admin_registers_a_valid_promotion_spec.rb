@@ -9,7 +9,7 @@ feature 'Admin registers a valid promotion' do
     visit root_path
     click_on 'Promoções'
     click_on 'Registrar uma promoção'
-    click_on 'Criar promoção'
+    click_on 'Salvar'
 
     expect(page).to have_content('não pode ficar em branco', count: 5)
   end
@@ -27,7 +27,7 @@ feature 'Admin registers a valid promotion' do
     click_on 'Promoções'
     click_on 'Registrar uma promoção'
     fill_in 'Código', with: 'NATAL10'
-    click_on 'Criar promoção'
+    click_on 'Salvar'
 
     expect(page).to have_content('já está em uso')
   end

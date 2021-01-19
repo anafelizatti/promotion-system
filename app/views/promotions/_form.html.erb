@@ -6,7 +6,7 @@
 </ul>
 <% end %>
 
-<%= form_with model: @promotion, local: true do |f| %>
+<%= form_with model: @promotion do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %>
 <%= f.label :description %>
@@ -19,6 +19,6 @@
 <%= f.number_field :coupon_quantity %>
 <%= f.label :expiration_date, 'Data de término' %>
 <%= f.date_field :expiration_date %>
-<%= f.submit 'Criar promoção'  %>
+<%= f.submit 'Salvar'  %>
 
 <% end %>

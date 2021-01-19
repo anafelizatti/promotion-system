@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <hr>
   <strong>
-    <p style ="color:CadetBlue;"> <%= @promotion.name %> </p>
+    <h2 style ="color:CadetBlue;"> <%= @promotion.name %> </h2>
   </strong>
   <hr>
 
-  <strong><h3> <%= @promotion.description %> </h3></strong>
+  <i><strong><h3> <%= @promotion.description %> </h3></strong></i>
 
   <dl>
     <dt> Desconto em porcentagem </dt>
@@ -19,9 +19,14 @@
   </dl>
 
   <% if @promotion.coupons.empty? %>
-    <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %>
+    <%= link_to 'Voltar', promotions_path %> |
+    <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
+    <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%> 
+    <br>
+    <br>
+    <strong><%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %></strong>
   <% else %>
-    <h1> Cupons </h1>
+    <h3 style ="color:CadetBlue;"> Cupons </h3>
     <%= render @promotion.coupons %>
 
       <%= form_tag(promotions_path, method: :get) do %>
@@ -31,9 +36,7 @@
 
     <% end %>
   
-  <%= link_to 'Voltar', promotions_path %>
-  <%= link_to 'Editar', edit_promotion_path(@promotion) %>
-  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+
 
 
 <% else %>
