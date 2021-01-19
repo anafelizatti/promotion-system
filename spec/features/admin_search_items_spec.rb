@@ -59,7 +59,7 @@ feature 'Admin searchs items' do
         expect(page).to have_content('Nenhuma categoria cadastrada')
     end
 
-    scenario 'in coupons' do
+    xscenario 'in coupons' do
         promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
                                     discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
         user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
@@ -78,7 +78,7 @@ feature 'Admin searchs items' do
         expect(page).to have_content('10,00%')
     end
 
-    scenario 'in coupons only if it exists' do
+    xscenario 'in coupons only if it exists' do
         promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
                                     discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
         user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
@@ -90,7 +90,7 @@ feature 'Admin searchs items' do
         expect(page).to_not have_content('Buscar cupom')
     end
 
-    scenario 'in coupons and receive a message if not found' do
+    xscenario 'in coupons and receive a message if not found' do
         promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
                                     discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
         user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')

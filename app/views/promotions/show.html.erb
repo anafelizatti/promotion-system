@@ -25,7 +25,7 @@
     <%= render @promotion.coupons %>
 
       <%= form_tag(promotions_path, method: :get) do %>
-        <%= text_field_tag 'search', nil, placeholder: 'Buscar cupom' %>
+        <%= text_field_tag 'search', nil, placeholder: 'Nome, Código ou Status' %>
         <%= submit_tag 'Pesquisar' %>
       <% end %>
 
