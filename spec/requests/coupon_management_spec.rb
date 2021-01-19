@@ -28,7 +28,6 @@ describe 'Coupon management' do
         xit 'coupon with expired promotion' do
         end
         
-
     end
 
     context 'burn' do

@@ -58,5 +58,54 @@ feature 'Admin searchs items' do
         
         expect(page).to have_content('Nenhuma categoria cadastrada')
     end
+
+    scenario 'in coupons' do
+        promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
+                                    discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
+        user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
+        login_as user, scope: :user
+
+        visit root_path
+        click_on 'Promoções'
+        click_on promotion.name
+        expect(current_path).to eq(promotion_path(promotion))
+        click_on 'Emitir Cupons'
+        visit promotions_path
+        click_on promotion.name
+        fill_in 'search', with: 'PASCOA'
+        click_on 'Pesquisar'
+        expect(page).to have_content('Pascoa')
+        expect(page).to have_content('10,00%')
+    end
+
+    scenario 'in coupons only if it exists' do
+        promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
+                                    discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
+        user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
+        login_as user, scope: :user
+
+        visit root_path
+        click_on 'Promoções'
+        click_on promotion.name
+        expect(page).to_not have_content('Buscar cupom')
+    end
+
+    scenario 'in coupons and receive a message if not found' do
+        promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
+                                    discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
+        user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
+        login_as user, scope: :user
+
+        visit root_path
+        click_on 'Promoções'
+        click_on promotion.name
+        expect(current_path).to eq(promotion_path(promotion))
+        click_on 'Emitir Cupons'
+        visit promotions_path
+        click_on promotion.name
+        fill_in 'search', with: 'Natal'
+        click_on 'Pesquisar'
+        expect(page).to have_content('Nenhuma promoção cadastrada')
+    end
         
 end

@@ -23,6 +23,12 @@
   <% else %>
     <h1> Cupons </h1>
     <%= render @promotion.coupons %>
+
+      <%= form_tag(promotions_path, method: :get) do %>
+        <%= text_field_tag 'search', nil, placeholder: 'Buscar cupom' %>
+        <%= submit_tag 'Pesquisar' %>
+      <% end %>
+
     <% end %>
   
   <%= link_to 'Voltar', promotions_path %>
