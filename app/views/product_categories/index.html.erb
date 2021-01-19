@@ -1,11 +1,13 @@
 <% if user_signed_in? %>
 <hr>
 <strong>
+<center>
   <p style ="color:CadetBlue;"> Categoria de produto  </p>
 </strong>
 <hr>
 
 <%= link_to 'Registrar uma categoria', new_product_category_path %>
+</center>
 
 <% if @product_categories.empty? %>
     <p>Nenhuma categoria cadastrada </p>

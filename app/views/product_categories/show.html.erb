@@ -8,6 +8,7 @@
 <h1> <%= @product_categories.name %> </h1>
 <p> <%= @product_categories.code %> </p>
 
+<hr>>
 <%= link_to 'Voltar', product_categories_path %>
 <%= link_to 'Editar', edit_product_category_path(@product_categories) %>
 <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>

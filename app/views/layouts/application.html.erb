@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <title>PromotionSystem</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header class="header" role="banner">
+  <div class="container">
+    <span class="control-menu visible-xs ico-menu-2"></span>
+    <span class="control-sidebar visible-xs ico-list"></span>
+    <h2 class="project-name">Promotion System</h2>
+    <a href="#" class="help-suggestions ico-question hidden-xs">Ajuda e Sugestões</a>
+  </div>
+</header>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <p><%= flash[:success] %> </p>
@@ -28,5 +39,17 @@
     </ul>
   <% end %>
   </nav>
-  </body>
+
+  <footer>
+  <footer class="footer">
+  <hr>
+    <div class="container footer-info">
+    <center style="color:CadetBlue;"> QUERO SER DEV - GIRLS <%= Time.now.year %></center>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
+  <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</body>
 </html>

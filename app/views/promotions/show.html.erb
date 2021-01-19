@@ -24,7 +24,7 @@
     <h1> Cupons </h1>
     <%= render @promotion.coupons %>
     <% end %>
-
+  
   <%= link_to 'Voltar', promotions_path %>
   <%= link_to 'Editar', edit_promotion_path(@promotion) %>
   <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
