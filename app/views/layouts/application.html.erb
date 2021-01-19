@@ -16,29 +16,27 @@
   <div class="container">
     <span class="control-menu visible-xs ico-menu-2"></span>
     <span class="control-sidebar visible-xs ico-list"></span>
-    <h2 class="project-name">Promotion System</h2>
-    <a href="#" class="help-suggestions ico-question hidden-xs">Ajuda e Sugestões</a>
+    <a class="project-name" href='/'>Página Inicial</a>
   </div>
 </header>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <p><%= flash[:success] %> </p>
-  
-  <%= yield %>
-  
-  <nav>
+<class="notice"><%= notice %>
+<class="alert"><%= flash[:alert] %>
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
+<%= yield %>
+
   <% if user_signed_in? %>
-  <hr>
-    <em><center> <%= current_user.email %> </p></center></em>
-    <center><i><%= link_to 'Logout', destroy_user_session_path, method: :delete %></center></i>
-    <br>
-    <ul>
-    <p><li><strong><%= link_to 'Promoções', promotions_path %></strong></li></p>
-    <p><li><strong><%= link_to 'Categorias de produtos', product_categories_path %></strong></li></p>
-    </ul>
+    <center><strong><%= link_to 'Promoções', promotions_path %></strong> |
+    <strong><%= link_to 'Categorias de produtos', product_categories_path %></strong>
+    <hr>
+    Logado como: <strong><%= current_user.email %></strong> <br>
+    <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    </center>
   <% end %>
-  </nav>
 
   <footer>
   <footer class="footer">

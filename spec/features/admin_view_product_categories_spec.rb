@@ -36,12 +36,6 @@ feature 'Admin view product categories' do
         click_on 'Hospedagem'
         expect(page).to have_content('Hospedagem')
         expect(page).to have_content('HOSP')
-
-        click_on 'Voltar'
-        expect(current_path).to eq product_categories_path
-
-        click_on 'HOME'
-        expect(current_path).to eq root_path
     end
 
     scenario 'and cannot view categories unless logged in' do
