@@ -15,12 +15,18 @@
     </center>
 <hr>
 
+<% @product_categories.each do |product_category| %>
+    <h3> <%= link_to product_category.name, product_category %> </h3>
+    <h3> <%= product_category.code %> </h3>
+<% end %> 
+
 <% if @product_categories.empty? %>
-    <p>Nenhuma categoria cadastrada </p>
+<p>Nenhuma categoria cadastrada </p>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>
+
 <% else %>
-    <% @product_categories.each do |product_category| %>
-        <h3> <%= link_to product_category.name, product_category %> </h3>
-        <h3> <%= product_category.code %> </h3>
-    <% end %> 
+<%= link_to 'Login', new_user_session_path %>
 <% end %>
-<% end %>
+
