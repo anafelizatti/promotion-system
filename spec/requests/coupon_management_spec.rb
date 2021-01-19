@@ -73,6 +73,7 @@ describe 'Coupon management' do
             post "/api/v1/coupons/#{coupon.code}/burn", params: { order: { code: '' } }
 
             expect(response).to have_http_status(422)
+
         end
 
     end
