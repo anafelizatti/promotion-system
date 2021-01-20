@@ -35,14 +35,13 @@
     <h3 style ="color:CadetBlue;"> Cupons </h3>
     <%= render @promotion.coupons %>
 
-      <%= form_tag(promotions_path, method: :get) do %>
+      <%= form_tag(coupons_path, method: :get) do %>
         <%= text_field_tag 'search', nil, placeholder: 'Nome, Código ou Status' %>
         <%= submit_tag 'Pesquisar' %>
       <% end %>
 
     <% end %>
   
-
 
 
 <% else %>

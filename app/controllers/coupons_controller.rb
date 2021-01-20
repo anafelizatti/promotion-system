@@ -1,5 +1,8 @@
 class CouponsController <  ApplicationController
 
+    def show
+    end
+
     def inactivate
         @coupon = Coupon.find(params[:id])
         @coupon.inactivate!
