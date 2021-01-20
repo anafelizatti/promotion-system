@@ -30,5 +30,4 @@ feature 'Admin generates coupons' do
     expect(page).to have_content(coupon.code)
     expect(page).to_not have_link('Emitir Cupons')
     end
-
 end

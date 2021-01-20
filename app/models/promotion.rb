@@ -4,6 +4,8 @@ class Promotion < ApplicationRecord
   validates :name, :code, :discount_rate, :coupon_quantity, :expiration_date,  
             presence: true
   validates :code, uniqueness: true
+  validates :coupon_quantity, numericality: { greater_than: 0, message: "Deve ser maior que 0" }
+
   scope :search, ->(query) {where('name like ? OR description like ? OR code like ?',
   "%#{query}%", "%#{query}%", "%#{query}%")}
 
