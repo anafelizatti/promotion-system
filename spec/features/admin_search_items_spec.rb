@@ -59,23 +59,27 @@ feature 'Admin searchs items' do
         expect(page).to have_content('Nenhuma categoria cadastrada')
     end
 
+    #TODO Refatorar onde os cupons serão mostrados
     xscenario 'in coupons' do
-        promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
-                                    discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
-        user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
+        promotion1 = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
+                         discount_rate: 10, code:'PASCOA10', expiration_date: 1.day.from_now)
+        promotion2 = Promotion.create!(name: 'Natal', coupon_quantity: 3,
+                        discount_rate: 10, code:'NATAL10', expiration_date: 1.day.from_now)
+        user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
         login_as user, scope: :user
 
         visit root_path
         click_on 'Promoções'
-        click_on promotion.name
-        expect(current_path).to eq(promotion_path(promotion))
+        click_on 'Pascoa'
         click_on 'Emitir Cupons'
         visit promotions_path
-        click_on promotion.name
+        click_on 'Natal'
+        click_on 'Emitir Cupons'
+        visit promotions_path
         fill_in 'search', with: 'PASCOA'
         click_on 'Pesquisar'
-        expect(page).to have_content('Pascoa')
-        expect(page).to have_content('10,00%')
+        expect(page).to have_content('PASCOA10', count:3)
+        expect(page).to_not have_content('NATAL10')
     end
 
     xscenario 'in coupons only if it exists' do
