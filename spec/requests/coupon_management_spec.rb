@@ -59,7 +59,7 @@ describe 'Coupon management' do
 
             post "/api/v1/coupons/#{coupon.code}/burn", params: {}
 
-            expect(response).to have_http_status(412)
+            expect(response).to have_http_status(422)
         end
         
         it 'order and code must exist' do 

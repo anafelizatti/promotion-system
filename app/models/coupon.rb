@@ -4,6 +4,8 @@ class Coupon < ApplicationRecord
       "%#{query}%", "%#{query}%", "%#{query}%")}
     enum status: {active: 0, inactivate: 10, burn: 20}
 
+    validates :order, presence: true, on: :coupon_burn
+
     def title
       "#{code} (#{Coupon.human_attribute_name("status.#{status}")})"
     end
@@ -14,8 +16,13 @@ class Coupon < ApplicationRecord
     end
 
     def burn!(order)
-      raise ActiveRecord::RecordInvalid unless order.present?
-      update!(order: order, status: :burn)
+      self.order = order
+      self.status = :burn
+      save!(context: :coupon_burn)
+
+      #raise ActiveRecord::RecordInvalid unless order.present?
+      #update!(order: order, status: :burn)
+      #save! levanta o mesmo erro do RecordInvalid, então o rescue continua funcionando no controller.
     end
   
 
