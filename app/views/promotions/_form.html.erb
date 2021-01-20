@@ -20,5 +20,10 @@
 <%= f.label :expiration_date, 'Data de término' %>
 <%= f.date_field :expiration_date %>
 <%= f.submit 'Salvar'  %>
+<hr>
+<p> Selecione as categorias associadas a esta promoção </p>
+<%= f.label :product_category_ids, 'Categorias' %>
+<br>
+<%= f.collection_check_boxes :product_category_ids, ProductCategory.all, :id, :name %>
 
 <% end %>

@@ -13,6 +13,9 @@ feature 'Admin registers a promotion' do
 
   scenario 'successfully' do
     user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    ProductCategory.create!(name:'Hospedagem', code:'HOS')
+    ProductCategory.create!(name:'E-mail', code:'EMA')
+    ProductCategory.create!(name:'CLOUD', code:'CLO')
     login_as user, scope: :user
 
     visit root_path
@@ -26,6 +29,8 @@ feature 'Admin registers a promotion' do
     fill_in 'Desconto', with: '15'
     fill_in 'Quantidade de cupons', with: '90'
     fill_in 'Data de término', with: '22/12/2033'
+    check ('Hospedagem')
+    check ('E-mail')
     click_on 'Salvar'
 
     expect(current_path).to eq(promotion_path(Promotion.last))
@@ -35,6 +40,9 @@ feature 'Admin registers a promotion' do
     expect(page).to have_content('CYBER15')
     expect(page).to have_content('22/12/2033')
     expect(page).to have_content('90')
+    expect(page).to have_content('Hospedagem')
+    expect(page).to have_content('E-mail')
+    expect(page).to_not have_content('Cloud')
     expect(page).to have_link('Voltar')
   end
 

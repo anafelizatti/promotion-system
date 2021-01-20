@@ -1,5 +1,8 @@
 class Promotion < ApplicationRecord
   has_many :coupons, dependent: :destroy
+  has_many :product_category_promotions
+  has_many :product_categories, through: :product_category_promotions
+  #pural de product_categories, pq são várias; e passa a tabela (plural) pra unir - join table)
 
   validates :name, :code, :discount_rate, :coupon_quantity, :expiration_date,  
             presence: true

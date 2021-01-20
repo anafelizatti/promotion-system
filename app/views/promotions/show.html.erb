@@ -17,7 +17,13 @@
     <dt> Número de cupons </dt>
     <dd> <%= @promotion.coupon_quantity %> </dd>
   </dl>
-
+  <hr>
+  
+  <p>Categorias válidas <p>
+  <% @promotion.product_categories.each do |product_category| %>
+    <p><%= product_category.name %></p>
+  <% end %>
+  
   <% if @promotion.coupons.empty? %>
     <%= link_to 'Voltar', promotions_path %> |
     <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
