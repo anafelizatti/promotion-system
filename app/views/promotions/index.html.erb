@@ -1,40 +1,36 @@
 <% if user_signed_in? %>
-<hr>
-<strong>
-  <center>
-  <h2 style ="color:CadetBlue;"> Promoções </h2>
-  <br>
-  <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %>
-</strong>
-<br>
-        <div id= 'promotion'>
-        <%= form_tag(promotions_path, method: :get) do %>
-            <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
-            <%= submit_tag 'Pesquisar' %>
-        <% end %>
-        </div>
-          <br>
-        <div id= 'coupons'>
-        <%= form_tag(search_coupons_path, method: :get) do %>
+    <% if !@promotions.empty? %>
+    <hr><strong><center>
+      <h2 style ="color:CadetBlue;"> Promoções </h2> <br>
+      <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %>
+    </strong> <br>
+
+      <div id= 'promotion'>
+      <%= form_tag(promotions_path, method: :get) do %>
+          <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
+          <%= submit_tag 'Pesquisar' %>
+      <% end %>
+      </div><br>
+
+      div id= 'coupons'>
+      <%= form_tag(search_coupons_path, method: :get) do %>
           <%= text_field_tag 'search', '', placeholder: 'Código de cupom' %> |
           <%= submit_tag 'Pesquisar' %>
-        <% end %>
-        </div>
+      <% end %>
+      </div> </center> <hr>
 
-  </center>
-<hr>
-<% @promotions.each do |promotion| %>
-  <h3> <%= link_to promotion.name, promotion %></h3>
-  <p><%= promotion.description %></p>
-  <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %> </p>
-<% end %>
+      <% @promotions.each do |promotion| %>
+        <h3> <%= link_to promotion.name, promotion %></h3>
+        <p><%= promotion.description %></p>
+        <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %> </p>
+      <% end %>
 
-<center>
-<% if @promotions.empty? %>
-<p>Nenhuma promoção cadastrada </p>
-<% end %>
-</center>
+    <center>
+    <% else %>
+      <p>Nenhuma promoção cadastrada </p>
+    <% end %>
+    </center>
 
 <% else %>
-<%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Login', new_user_session_path %>
 <% end %>
