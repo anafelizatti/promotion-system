@@ -1,6 +1,5 @@
-<strong>Código</strong>
-<%= render @coupons %>
-
-<% if @coupons.empty? %>
-<p>Nenhum cupom encontrado</p>
-<% end %>
+<strong>Cupom encontrado<strong>
+    <% @promotions.coupons.each do |coupon| %>
+        <p><%= coupon.name %></p>
+        <p><%= coupon.discount_rate %></p>
+    <% end %> 

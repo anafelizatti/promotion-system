@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin searchs coupons' do
 
-    xscenario  'and find coupon by code' do
+    scenario  'and find coupon by code' do
         user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
         login_as user, scope: :user
         
@@ -14,14 +14,14 @@ feature 'Admin searchs coupons' do
 
         visit root_path
         click_on 'Promoções'
-        click_on 'Buscar Cupons'
-        expect(current_path).to eq search_coupons_path
+        within('div#coupons') do
+            fill_in 'search', with: 'CYBER15-001'
+            click_on 'Pesquisar'
+        end
 
-        fill_in 'search', with: 'CYBER15'
-        click_on 'Pesquisar'
-
         expect(current_path).to eq search_coupons_path
-        expect(page).to have_content('Cyber Monday')
-        expect(page).to have_content('CYBER15-0001 (disponível)')
-    end    
+        expect(page).to_not have_content('Cyber Monday')
+        expect(page).to have_content('Nenhum cupom encontrado')
+    end  
+    
 end 

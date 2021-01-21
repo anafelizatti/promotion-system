@@ -1,6 +1,6 @@
 class Coupon < ApplicationRecord
     belongs_to :promotion
-    scope :search, ->(query) {where('code like ?', "%#{query}%")}
+    scope :search, ->(query) {where('code equal ?', "%#{query}%")}
     
     enum status: {active: 0, inactivate: 10, burn: 20}
 

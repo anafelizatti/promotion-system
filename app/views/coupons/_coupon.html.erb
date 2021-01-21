@@ -1,4 +1,5 @@
 <br>
+<form>
 <strong>Código</strong>
 <dd><%=coupon.title %></dd>
 <%if coupon.active? %>
@@ -7,4 +8,5 @@
     <%= link_to t('.active'), active_coupon_path(coupon), method: :post %>
 <% end %>
 <br>
+</form>
 
