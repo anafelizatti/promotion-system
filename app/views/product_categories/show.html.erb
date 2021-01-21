@@ -1,18 +1,13 @@
 <% if user_signed_in? %>
-<hr>
-<strong>
-  <p style ="color:CadetBlue;"> Categoria de produto  </p>
-</strong>
-<hr>
-
-<h1> <%= @product_categories.name %> </h1>
-<p> <%= @product_categories.code %> </p>
-
-<hr>>
-<%= link_to 'Voltar', product_categories_path %>
-<%= link_to 'Editar', edit_product_category_path(@product_categories) %>
-<%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+  <hr><strong><p style ="color:CadetBlue;"> Categoria de produto </p></strong>
+  <hr>
+  <h1> <%= @product_categories.name %> </h1>
+  <p> <%= @product_categories.code %> </p>
+  <hr>
+  <%= link_to 'Voltar', product_categories_path %>
+  <%= link_to 'Editar', edit_product_category_path(@product_categories) %>
+  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
 
 <% else %>
-<%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Login', new_user_session_path %>
 <% end %>

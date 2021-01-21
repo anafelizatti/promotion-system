@@ -1,17 +1,10 @@
 <% if user_signed_in? %>
-<hr>
-<strong>
-  <p style ="color:CadetBlue;"> Editar categoria de produto  </p>
-</strong>
-<hr>
+  <hr><strong><p style ="color:CadetBlue;"> Editar categoria de produto  </p></strong><hr>
 
-<%= render 'form', product_categories: @product_categories %>
-<br>
-<%= link_to 'VOLTAR', product_categories_path %>
-<br>
-<br>
-<%= link_to 'HOME', root_path %>
+  <%= render 'form', product_categories: @product_categories %><br>
+  <%= link_to 'VOLTAR', product_categories_path %><br><br>
+  <%= link_to 'HOME', root_path %>
 
 <% else %>
-<%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Login', new_user_session_path %>
 <% end %>
