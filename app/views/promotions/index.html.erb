@@ -3,12 +3,24 @@
 <strong>
   <center>
   <h2 style ="color:CadetBlue;"> Promoções </h2>
+  <br>
+  <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %>
 </strong>
-        <br>
+<br>
+        <div id= 'promotion'>
         <%= form_tag(promotions_path, method: :get) do %>
-            <%= text_field_tag 'search', nil, placeholder: 'Buscar promoção' %>
+            <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
             <%= submit_tag 'Pesquisar' %>
         <% end %>
+        </div>
+          <br>
+        <div id= 'coupons'>
+        <%= form_tag(search_coupons_path, method: :get) do %>
+          <%= text_field_tag 'search', '', placeholder: 'Código de cupom' %> |
+          <%= submit_tag 'Pesquisar' %>
+        <% end %>
+        </div>
+
   </center>
 <hr>
 <% @promotions.each do |promotion| %>
@@ -21,9 +33,6 @@
 <% if @promotions.empty? %>
 <p>Nenhuma promoção cadastrada </p>
 <% end %>
-<br>
-  <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %>
-<br>
 </center>
 
 <% else %>

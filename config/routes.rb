@@ -2,22 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
   root'home#index'
   
-  resources :promotions, only: %i[index show new create update edit destroy] do
+  resources :promotions do
     post 'generate_coupons', on: :member
   end
 
-  #resources :coupons %i[show] do
-   # get 'search', 
-  #end
+  resources :product_categories
 
-  resources :product_categories, only: %i[index show new create destroy edit update]
 
   resources :coupons, only: [] do
     post 'inactivate', on: :member
-  end
-
-  resources :coupons, only: [] do
     post 'active', on: :member
+    get 'search', on: :collection
   end
 
   namespace 'api' do

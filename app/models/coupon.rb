@@ -1,7 +1,7 @@
 class Coupon < ApplicationRecord
     belongs_to :promotion
-    scope :search, ->(query) {where('name like ? OR code like ? OR status like ?',
-      "%#{query}%", "%#{query}%", "%#{query}%")}
+    scope :search, ->(query) {where('code like ?', "%#{query}%")}
+    
     enum status: {active: 0, inactivate: 10, burn: 20}
 
     validates :order, presence: true, on: :coupon_burn

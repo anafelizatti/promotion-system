@@ -17,32 +17,31 @@
     <dt> Número de cupons </dt>
     <dd> <%= @promotion.coupon_quantity %> </dd>
   </dl>
+
+ 
+  <%= link_to 'Voltar', promotions_path %> |
+  <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
+  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%> 
   <hr>
-  
-  <p>Categorias válidas <p>
-  <% @promotion.product_categories.each do |product_category| %>
-    <p><%= product_category.name %></p>
+
+  <strong>Categorias válidas <strong>
+  <% if @promotion.product_categories.empty? %>
+    <p> Nenhuma categoria cadastrada </p>
+  <% else %>
+    <% @promotion.product_categories.each do |product_category| %>
+      <p><%= product_category.name %></p>
+    <% end %> 
   <% end %>
   
+  <hr>
+  
   <% if @promotion.coupons.empty? %>
-    <%= link_to 'Voltar', promotions_path %> |
-    <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
-    <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%> 
-    <br>
-    <br>
     <strong><%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %></strong>
   <% else %>
+
     <h3 style ="color:CadetBlue;"> Cupons </h3>
     <%= render @promotion.coupons %>
-
-      <%= form_tag(coupons_path, method: :get) do %>
-        <%= text_field_tag 'search', nil, placeholder: 'Nome, Código ou Status' %>
-        <%= submit_tag 'Pesquisar' %>
-      <% end %>
-
-    <% end %>
-  
-
+  <% end %>
 
 <% else %>
 <%= link_to 'Login', new_user_session_path %>

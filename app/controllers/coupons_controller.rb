@@ -1,6 +1,11 @@
 class CouponsController <  ApplicationController
 
-    def show
+    def search
+        if params[:search]
+            @coupons = Coupon.search(params[:search])
+          else
+            'Nenhum cupom encontrado'
+        end
     end
 
     def inactivate

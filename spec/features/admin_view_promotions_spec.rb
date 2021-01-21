@@ -75,63 +75,63 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotions page' do
+      promotion = Promotion.create!(name: 'Natal', 
+                                    description: 'Promoção de Natal',
+                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                    expiration_date: '22/12/2033')
+                                    
+      user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+      login_as user, scope: :user
+
+      visit root_path
+      click_on 'Promoções'
+      click_on 'Natal'
+      click_on 'Voltar'
+
+      expect(current_path).to eq promotions_path
+    end 
+
+    scenario 'and cannot view promotions unless logged in' do
+      visit root_path
+      
+      expect(page).to_not have_link('Promoções')
+    end
+
+    scenario 'and cannot view promotions unless logged in via link' do
+      Promotion.create!(name: 'Natal', 
+                        description: 'Promoção de Natal',
+                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                        expiration_date: '22/12/2033')
+
+      visit promotions_path
+
+      expect(page).to_not have_content('Natal')
+      expect(page).to_not have_link('Promoções')
+      expect(current_path).to eq(new_user_session_path)
+    end
+
+  scenario 'and cannot view details unless logged in via link' do
     promotion = Promotion.create!(name: 'Natal', 
-                                  description: 'Promoção de Natal',
-                                  code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
-                                  
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
-    login_as user, scope: :user
+                        description: 'Promoção de Natal',
+                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                        expiration_date: '22/12/2033')
 
-    visit root_path
-    click_on 'Promoções'
-    click_on 'Natal'
-    click_on 'Voltar'
-
-    expect(current_path).to eq promotions_path
+      visit promotions_path(promotion)
+      expect(page).to_not have_content('Natal')
+      expect(page).to_not have_link('Editar')
+      expect(page).to_not have_link('Deletar')
+      expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
 
-  scenario 'and cannot view promotions unless logged in' do
-    visit root_path
-    
-    expect(page).to_not have_link('Promoções')
+  scenario 'and cannot view edit unless logged in via link' do
+    promotion = Promotion.create!(name: 'Natal', 
+                        description: 'Promoção de Natal',
+                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                        expiration_date: '22/12/2033')
+
+      visit edit_promotion_path(promotion)
+      expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
-
-  scenario 'and cannot view promotions unless logged in via link' do
-    Promotion.create!(name: 'Natal', 
-                      description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-
-    visit promotions_path
-
-    expect(page).to_not have_content('Natal')
-    expect(page).to_not have_link('Promoções')
-    expect(current_path).to eq(new_user_session_path)
-  end
-
-scenario 'and cannot view details unless logged in via link' do
-  promotion = Promotion.create!(name: 'Natal', 
-                      description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-
-    visit promotions_path(promotion)
-    expect(page).to_not have_content('Natal')
-    expect(page).to_not have_link('Editar')
-    expect(page).to_not have_link('Deletar')
-    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
-end
-
-scenario 'and cannot view edit unless logged in via link' do
-  promotion = Promotion.create!(name: 'Natal', 
-                      description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-
-    visit edit_promotion_path(promotion)
-    expect(page).to have_content('Para continuar, efetue login ou registre-se.')
-end
   
 
 end
