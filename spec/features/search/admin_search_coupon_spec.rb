@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 feature 'Admin searchs coupons' do

@@ -24,7 +24,6 @@ class Coupon < ApplicationRecord
       #update!(order: order, status: :burn)
       #save! levanta o mesmo erro do RecordInvalid, então o rescue continua funcionando no controller.
     end
-  
 
     private
 
