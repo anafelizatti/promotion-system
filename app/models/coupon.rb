@@ -33,5 +33,9 @@ class Coupon < ApplicationRecord
      I18n.l(promotion.expiration_date)
     end
 
+    def expired?
+      promotion.expiration_date < Date.current
+    end
+
 
 end
