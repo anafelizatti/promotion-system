@@ -26,11 +26,12 @@ class Coupon < ApplicationRecord
     end
 
     def discount_rate
-      promotion.discount_rate
+     promotion.discount_rate
     end
 
     def expiration_date
-      I18n.l(promotion.expiration_date)
+     I18n.l(promotion.expiration_date)
     end
+
 
 end

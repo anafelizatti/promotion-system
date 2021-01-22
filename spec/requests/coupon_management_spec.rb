@@ -24,8 +24,17 @@ describe 'Coupon management' do
             expect(response.body).to include('Cupom não encontrado')
         end
 
-        #TODO fazer esse teste passar
-        xit 'coupon with expired promotion' do
+        it 'coupon with expired promotion' do
+            promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
+            description: 'Promoção de Cyber Monday',
+            code: 'CYBER15', discount_rate: 15,
+            expiration_date: 7.days.ago)
+            coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
+            
+            get "/api/v1/coupons/#{coupon.code}"
+
+            expect(response).to have_http_status(:precondition_failed)
+            expect(response.body).to include('Cupom fora do prazo')
         end
         
     end

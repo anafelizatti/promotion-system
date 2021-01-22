@@ -5,8 +5,12 @@ module Api
 
             def show
                 @coupon = Coupon.find_by!(code: params[:code])
-                render json: @coupon, status: 200
 
+                if @coupon.promotion.expiration_date < Date.current
+                    render json: 'Cupom fora do prazo da promoção', status: :precondition_failed
+                else
+                    render json: @coupon, status: 200
+                end
                 rescue ActiveRecord::RecordNotFound
                 render json: 'Cupom não encontrado', status: 404 #:not_found
             end
@@ -19,6 +23,7 @@ module Api
               rescue ActiveRecord::RecordInvalid
                 render json: '', status: 422
             end
+
 
             private
             
