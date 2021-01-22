@@ -1,10 +1,8 @@
 class CouponsController <  ApplicationController
 
     def search
-        if params[:code]
-            @coupon = Coupon.find_by!(code: params[:code])
-        else
-            'Nenhum cupom encontrado'
+        if params[:search]
+            @coupon = Coupon.find_by(code: params[:search])
         end
     end
 

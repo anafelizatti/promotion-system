@@ -25,8 +25,6 @@ class Coupon < ApplicationRecord
       #save! levanta o mesmo erro do RecordInvalid, então o rescue continua funcionando no controller.
     end
 
-    private
-
     def discount_rate
       promotion.discount_rate
     end

@@ -1,6 +1,15 @@
-<strong>Código</strong>
-<%= render @coupon %>
-
-<% if @coupons.empty? %>
+<% if @coupon.nil? %>
     <p>Nenhum cupom encontrado</p>
+<% else %>
+    <strong>Cupom encontrado para promoção: 
+    <%= link_to "#{@coupon.promotion.name}", promotion_path(@coupon.promotion) %></strong>
+    <br>
+    <%= render @coupon %>
+    <br>
+    <strong>Detalhes de cupom </strong>
+    <dd>Nome da promoção: <%= @coupon.promotion.name %> </dd>
+    <dd>Desconto: <%= @coupon.promotion.discount_rate %>% </dd>
+    <dd>Data de término: <%= @coupon.expiration_date %> </dd>
+    <br>
+    <%= link_to 'Voltar', promotions_path %>
 <% end %>
