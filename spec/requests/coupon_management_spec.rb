@@ -56,7 +56,10 @@ describe 'Coupon management' do
           end
       
 
-        xit 'coupon not found by code' do
+        it 'coupon not found by code' do
+            post "/api/v1/coupons/COUPON-0002/burn", params: { order: { code: 'ORDER123'} }
+            expect(response).to have_http_status(:not_found)
+            expect(response.body).to include('Cupom não encontrado.')
         end
 
         it 'order must exist' do

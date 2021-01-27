@@ -14,8 +14,11 @@ pt-BR:
   coupons:
     inactivate: 
       sucess: Cupom cancelado com sucesso
+    active: 
+      sucess: Cupom ativado com sucesso
     coupon:
       inactivate: Descartar cupom
       active: Reativar cupom
+    
         
 
