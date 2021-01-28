@@ -3,12 +3,9 @@ require 'rails_helper'
 feature 'Admin change coupon status' do
     
     scenario 'and inactivated it' do
-      promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
-                                    description: 'Promoção de Cyber Monday',
-                                    code: 'CYBER15', discount_rate: 15,
-                                    expiration_date: '22/12/2033')
+      promotion = create(:promotion)
       coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')
-      user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+      user = create(:user)
     
       login_as user, scope: :user
       visit promotion_path(promotion)

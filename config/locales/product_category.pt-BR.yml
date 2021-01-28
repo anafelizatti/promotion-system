@@ -12,4 +12,6 @@ pt-BR:
       product_category/status:
         allow: Autorizar
         disallow: Não autorizar
+        allowed: Autorizada
+        disallowed: Desautorizada
       

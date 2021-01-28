@@ -4,6 +4,8 @@ class ProductCategory < ApplicationRecord
     validates :code, uniqueness: { message: 'deve ser único'}
     scope :search, ->(query) {where('name like ? OR code like ?', "%#{query}%", "%#{query}%")}
     enum status: {allow: 0, disallow: 10}
+
+
 end
 
 #TODO

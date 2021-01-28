@@ -45,7 +45,7 @@ before_action :authenticate_user!
     end
 
     def disallow
-        @coupon.disallow!
+        @product_categories.disallow!
         flash[:success] = t('.sucess')
     end
 
