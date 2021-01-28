@@ -12,7 +12,7 @@ feature 'Admin registers a promotion' do
   end
 
   scenario 'successfully' do
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     ProductCategory.create!(name:'Hospedagem', code:'HOS')
     ProductCategory.create!(name:'E-mail', code:'EMA')
     ProductCategory.create!(name:'CLOUD', code:'CLO')

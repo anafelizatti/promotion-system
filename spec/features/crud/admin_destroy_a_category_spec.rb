@@ -4,7 +4,7 @@ feature 'Admin destroys a category' do
   
   scenario 'sucessfully' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     login_as user, scope: :user
 
     visit product_categories_path

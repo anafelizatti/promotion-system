@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin registers a valid promotion' do
   scenario 'and attributes cannot be blank' do
 
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     login_as user, scope: :user
 
     visit root_path
@@ -16,7 +16,7 @@ feature 'Admin registers a valid promotion' do
 
   scenario 'and code must be unique' do
     
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     login_as user, scope: :user
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
@@ -33,7 +33,7 @@ feature 'Admin registers a valid promotion' do
   end
 
   scenario 'and coupon quantity must be greater than 0' do
-    user = User.create(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     login_as user, scope: :user
 
     visit promotions_path

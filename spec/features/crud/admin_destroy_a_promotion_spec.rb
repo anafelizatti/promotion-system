@@ -7,7 +7,7 @@ feature 'Admin destroys a promotion' do
                       code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
 
-    user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+    user = create(:user)
     login_as user, scope: :user
 
     visit promotions_path

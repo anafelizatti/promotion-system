@@ -5,7 +5,7 @@ feature 'Admin view product categories' do
     scenario 'successfully' do
         ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
         ProductCategory.create!(name: 'E-mail', code: 'EMAIL')
-        user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+        user = create(:user)
         login_as user, scope: :user
 
         visit root_path
@@ -18,7 +18,7 @@ feature 'Admin view product categories' do
     end
 
     scenario 'and show empty message' do
-        user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+        user = create(:user)
         login_as user, scope: :user
 
         visit root_path
@@ -28,7 +28,7 @@ feature 'Admin view product categories' do
 
     scenario 'and view details' do
         category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
-        user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
+        user = create(:user)
         login_as user, scope: :user
 
         visit product_categories_path

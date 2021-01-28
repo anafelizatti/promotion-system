@@ -7,5 +7,9 @@ feature 'Visitor visit home page' do
     expect(page).to have_content('Promotion System')
     expect(page).to have_content('Boas vindas ao sistema de gestão de '\
                                  'promoções')
+    expect(page).to have_link('Login')
+    expect(page).to_not have_link('Promoções')
+    expect(page).to_not have_link('Categorias')
   end
+
 end
