@@ -6,4 +6,6 @@ class ProductCategory < ApplicationRecord
     enum status: {allow: 0, disallow: 10}
 end
 
+#TODO
+#registrar uma promoção com categoria, e se essa categoria tiver status = allow , permitir a emissão de cupons.
 

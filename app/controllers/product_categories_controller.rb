@@ -1,5 +1,5 @@
 class ProductCategoriesController < ApplicationController
-before_action :set_product_categories, only: %i[show destroy edit update]
+before_action :set_product_categories, only: %i[show destroy edit update allow disallow]
 before_action :authenticate_user!
     
     def index
@@ -37,6 +37,16 @@ before_action :authenticate_user!
         else
            render :new
         end
+    end
+
+    def allow
+        @product_categories.allow!
+        flash[:success] = t('.sucess')
+    end
+
+    def disallow
+        @coupon.disallow!
+        flash[:success] = t('.sucess')
     end
 
 private

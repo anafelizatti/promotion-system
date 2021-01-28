@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      product_category:
+        one: Categoria de produto
+        other: Categorias de produto
+    attributes:
+      product_category:
+        name: Nome
+        code: Código
+      product_category/status:
+        allow: Autorizar
+        disallow: Não autorizar
+      

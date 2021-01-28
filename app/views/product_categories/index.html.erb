@@ -10,6 +10,7 @@
     <% @product_categories.each do |product_category| %>
         <h3> <%= link_to product_category.name, product_category %> </h3>
         <h3> <%= product_category.code %> </h3>
+
     <% end %> 
 
     <% if @product_categories.empty? %>

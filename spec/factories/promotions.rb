@@ -7,4 +7,4 @@ FactoryBot.define do
       coupon_quantity { 100 }
       expiration_date { '22/12/2033'}
     end
-  end
+end
