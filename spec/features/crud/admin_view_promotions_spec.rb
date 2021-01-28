@@ -27,9 +27,7 @@ feature 'Admin view promotions' do
 
   scenario 'and view details' do
 
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+    promotion = create(:promotion)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
@@ -61,10 +59,7 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to home page' do
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-
+    promotion = create(:promotion)
     user = create(:user)
     login_as user, scope: :user
 
@@ -75,17 +70,13 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotions page' do
-      promotion = Promotion.create!(name: 'Natal', 
-                                    description: 'Promoção de Natal',
-                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                    expiration_date: '22/12/2033')
-                                    
+      promotion = create(:promotion)
       user = create(:user)
       login_as user, scope: :user
 
       visit root_path
       click_on 'Promoções'
-      click_on 'Natal'
+      click_on 'Dia do consumidor'
       click_on 'Voltar'
 
       expect(current_path).to eq promotions_path
@@ -98,11 +89,7 @@ feature 'Admin view promotions' do
     end
 
     scenario 'and cannot view promotions unless logged in via link' do
-      Promotion.create!(name: 'Natal', 
-                        description: 'Promoção de Natal',
-                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                        expiration_date: '22/12/2033')
-
+      promotion = create(:promotion)
       visit promotions_path
 
       expect(page).to_not have_content('Natal')
@@ -111,10 +98,9 @@ feature 'Admin view promotions' do
     end
 
   scenario 'and cannot view details unless logged in via link' do
-    promotion = Promotion.create!(name: 'Natal', 
-                        description: 'Promoção de Natal',
-                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                        expiration_date: '22/12/2033')
+    promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+    expiration_date: '22/12/2033')
 
       visit promotions_path(promotion)
       expect(page).to_not have_content('Natal')
@@ -124,11 +110,7 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and cannot view edit unless logged in via link' do
-    promotion = Promotion.create!(name: 'Natal', 
-                        description: 'Promoção de Natal',
-                        code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                        expiration_date: '22/12/2033')
-
+    promotion = create(:promotion)
       visit edit_promotion_path(promotion)
       expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end

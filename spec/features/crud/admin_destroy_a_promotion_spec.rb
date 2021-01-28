@@ -3,10 +3,7 @@ require 'rails_helper'
 feature 'Admin destroys a promotion' do
   
   scenario 'sucessfully' do
-    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
-                      code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
-
+    promotion = create(:promotion)
     user = create(:user)
     login_as user, scope: :user
 
@@ -20,9 +17,7 @@ feature 'Admin destroys a promotion' do
   end
 
   scenario 'cannot delete unless logged in' do
-    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
-                      code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+    promotion = create(:promotion)
     visit promotions_path(promotion)
     expect(page).to_not have_content(promotion)
     expect(page).to have_content('Para continuar, efetue login ou registre-se')
