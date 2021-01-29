@@ -1,34 +1,45 @@
 <% if user_signed_in? %>
-    <hr><strong><h2 style ="color:CadetBlue;"> <%= @promotion.name %></h2></strong><hr>
-    <i><strong><h3> <%= @promotion.description %> </h3></strong></i>
-    <dl>
-      <dt> Desconto em porcentagem </dt>
-      <dd> <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %> </dd>
-      <dt> Código </dt>
-      <dd> <%= @promotion.code %> </dd>
-      <dt> Data de término </dt>
-      <dd> <%= @promotion.expiration_date.strftime('%d/%m/%Y') %> </dd>
-      <dt> Número de cupons </dt>
-      <dd> <%= @promotion.coupon_quantity %> </dd>
-    </dl>
-    <%= link_to 'Voltar', promotions_path %> |
-    <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
-    <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%> 
-    <hr>
-    <strong>Categorias válidas <strong>
-    <% if @promotion.product_categories.empty? %>
-      <p> Nenhuma categoria cadastrada </p>
-    <% else %>
-      <% @promotion.product_categories.each do |product_category| %>
-        <p><%= product_category.name %></p>
-      <% end %> 
-    <% end %><hr>
-    <% if @promotion.coupons.empty? %>
-      <strong><%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %></strong>
-    <% else %>
-      <h3 style ="color:CadetBlue;"> Cupons </h3>
-      <%= render @promotion.coupons %>
-    <% end %>
+      <hr><strong><h2 style ="color:CadetBlue;"> <%= @promotion.name %></h2></strong><hr>
+      <i><strong><h3> <%= @promotion.description %> </h3></strong></i>
+      <dl>
+        <dt> Desconto em porcentagem </dt>
+        <dd> <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %> </dd>
+        <dt> Código </dt>
+        <dd> <%= @promotion.code %> </dd>
+        <dt> Data de término </dt>
+        <dd> <%= @promotion.expiration_date.strftime('%d/%m/%Y') %> </dd>
+        <dt> Número de cupons </dt>
+        <dd> <%= @promotion.coupon_quantity %> </dd>
+      </dl>
+      <%= link_to 'Voltar', promotions_path %> |
+      <%= link_to 'Editar', edit_promotion_path(@promotion) %> |
+      <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%> 
+      <hr>
+      <strong>Categorias válidas <strong>
+
+        <% if @promotion.product_categories.empty? %>
+          <p> Nenhuma categoria cadastrada </p>
+        <% else %>
+          <% @promotion.product_categories.each do |product_category| %>
+            <p><%= product_category.name %></p>
+            <p><%= product_category.code %></p>
+            <p><%= product_category.permission %></p>
+          <% end %>
+        <% end %><hr>
+    
+    
+    <% if @promotion.coupons.empty? %> #&& @promotion.product_categories.allow 
+      <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %>
+    <% else %> >
+      <% if @promotion.coupons.empty? %> #&& @promotion.product_categories.disallow %>
+        <p style ="color:Red;"> Categoria não autorizada promoção </p>
+        <p> link_to 'Ir para categorias', product_categories_path </p>
+      <% else %> >
+        <h3 style ="color:CadetBlue;"> Cupons </h3>
+        <%= render @promotion.coupons %>
+      <% end %>
+      <% end %>
+      
 <% else %>
 <%= link_to 'Login', new_user_session_path %>
 <% end %>

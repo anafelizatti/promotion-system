@@ -39,17 +39,6 @@ before_action :authenticate_user!
         end
     end
 
-    def allowed
-        @product_categories.allow!
-        flash[:success] = t('.sucess')
-    end
-
-    def disallowed
-        @product_categories.disallow!
-        flash[:success] = t('.sucess')
-    end
-
-
 private
     
     def set_product_categories
