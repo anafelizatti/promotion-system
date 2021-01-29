@@ -1,5 +1,5 @@
 class ProductCategoriesController < ApplicationController
-before_action :set_product_categories, only: %i[show destroy edit update allow disallow]
+before_action :set_product_categories, only: %i[show destroy edit update allowed disallowed]
 before_action :authenticate_user!
     
     def index
@@ -39,15 +39,16 @@ before_action :authenticate_user!
         end
     end
 
-    def allow
+    def allowed
         @product_categories.allow!
         flash[:success] = t('.sucess')
     end
 
-    def disallow
+    def disallowed
         @product_categories.disallow!
         flash[:success] = t('.sucess')
     end
+
 
 private
     
@@ -58,7 +59,7 @@ private
     def product_categories_params
         params
         .require(:product_category)
-        .permit(:name, :code)
+        .permit(:name, :code, :status)
     end
 
 end

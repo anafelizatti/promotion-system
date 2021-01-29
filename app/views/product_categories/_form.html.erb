@@ -5,8 +5,10 @@
 <%= f.text_field :name %>
 <%= f.label :code, 'Código' %>
 <%= f.text_field :code %>
+<div id= 'category_permission'>
 <%= f.label :status, 'Autorizar para Promoção?' %>
 <%= f.select(:status, ProductCategory.statuses.keys.map {|key| [key.humanize, key]}) %>
+</div>
 <br>
 <br>
 <%= f.submit 'Criar categoria'  %>

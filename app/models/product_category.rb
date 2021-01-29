@@ -5,6 +5,9 @@ class ProductCategory < ApplicationRecord
     scope :search, ->(query) {where('name like ? OR code like ?', "%#{query}%", "%#{query}%")}
     enum status: {allow: 0, disallow: 10}
 
+    def permission 
+        "Status para promoção: #{ProductCategory.human_attribute_name("status.#{status}")}"
+    end
 
 end
 

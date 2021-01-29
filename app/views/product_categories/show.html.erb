@@ -3,6 +3,7 @@
   <hr>
   <h1> <%= @product_categories.name %> </h1>
   <p> <%= @product_categories.code %> </p>
+  <p> <strong> <%= @product_categories.permission %> </p></strong>
   <hr>
   <%= link_to 'Voltar', product_categories_path %>
   <%= link_to 'Editar', edit_product_category_path(@product_categories) %>
