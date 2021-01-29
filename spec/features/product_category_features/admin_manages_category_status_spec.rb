@@ -19,15 +19,19 @@ feature 'Admin manages categories status ' do
         expect(page).to have_content('Autorizar')
     end
 
-    xscenario ' and change category status ' do 
+    scenario ' and change category status ' do 
         category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
         user = create(:user)
         login_as user, scope: :user
     
-        visit edit_product_categories_path
-        select("Disallow", from: "Autorizar para promoção").select_option
+        visit edit_product_category_path(category)
+        select("Disallow", from: "Autorizar para Promoção?").select_option
         click_on 'Criar categoria'
 
         visit product_categories_path
+        click_on ('Hospedagem')
+        expect(page).to have_content('Hospedagem')
+        expect(page).to have_content('HOSP')
+        expect(page).to have_content('Não autorizar')
     end
 end
