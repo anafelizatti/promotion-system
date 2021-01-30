@@ -17,7 +17,7 @@
       <hr>
       <strong>Categorias válidas <strong>
 
-        <% if @promotion.product_categories.empty? %>
+        <% if @promotion.product_categories.empty? || @promotion.product_categories.disallow %>
           <p> Nenhuma categoria cadastrada </p>
         <% else %>
           <% @promotion.product_categories.each do |product_category| %>
@@ -27,11 +27,10 @@
           <% end %>
         <% end %><hr>
     
-    
-    <% if @promotion.coupons.empty? %> #&& @promotion.product_categories.allow 
+    <% if @promotion.coupons.empty? %>
       <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post %>
     <% else %> >
-      <% if @promotion.coupons.empty? %> #&& @promotion.product_categories.disallow %>
+      <% if @promotion.coupons.empty? %> 
         <p style ="color:Red;"> Categoria não autorizada promoção </p>
         <p> link_to 'Ir para categorias', product_categories_path </p>
       <% else %> >

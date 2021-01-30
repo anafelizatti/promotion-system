@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin manages categories status ' do
+feature 'Admin manages category status ' do
     scenario ' and save category with status default ' do 
         user = create(:user)
         login_as user, scope: :user

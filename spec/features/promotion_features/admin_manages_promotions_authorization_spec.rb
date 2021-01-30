@@ -22,7 +22,7 @@ feature 'Admin manages promotions authorization' do
         expect(page).to have_link('Emitir Cupons')
     end
 
-    xscenario 'and can not generates coupons if category status is disallowed' do
+    scenario 'and can not generates coupons if category status is disallowed' do
         user = create(:user)
         login_as user, scope: :user
         category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
