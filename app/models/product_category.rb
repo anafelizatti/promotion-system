@@ -1,5 +1,5 @@
 class ProductCategory < ApplicationRecord
-    has_many :product_category_promotions
+    has_many :product_category_promotions, dependent: :destroy
     has_many :promotions
     validates :name, :code, presence: true
     validates :code, uniqueness: { message: 'deve ser único'}

@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <hr><strong><p style ="color:CadetBlue;"> Editar promoção </p></strong><hr>
   <%= render 'form', promotions: @promotions %><br>
-  <%= link_to 'VOLTAR', promotions_path %><br><br>
+  <%= link_to 'VOLTAR', promotions_path, class: "btn" %><br><br>
 <% else %>
   <%= link_to 'Login', new_user_session_path %>
 <% end %>

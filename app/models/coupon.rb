@@ -1,5 +1,5 @@
 class Coupon < ApplicationRecord
-    belongs_to :promotion
+    belongs_to :promotion, dependent: :destroy
     scope :search, ->(query) {where('code equal ?', "%#{query}%")}
     
     enum status: {active: 0, inactivate: 10, burn: 20}
