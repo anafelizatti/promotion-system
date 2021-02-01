@@ -10,7 +10,7 @@ feature 'Admin registers a valid category' do
     click_on 'Registrar uma categoria'
     fill_in 'Nome', with: 'HOSPEDAGEM'
     fill_in 'Código', with: 'HOSP'
-    click_on 'Criar categoria'
+    click_on 'Salvar categoria'
     expect(current_path).to eq(product_category_path(ProductCategory.last))
     expect(page).to have_content('HOSPEDAGEM')
     expect(page).to have_content('HOSP')
@@ -22,7 +22,7 @@ feature 'Admin registers a valid category' do
     login_as user, scope: :user
     visit product_categories_path
     click_on 'Registrar uma categoria'
-    click_on 'Criar categoria'
+    click_on 'Salvar categoria'
     expect(page).to have_content('não pode ficar em branco', count: 2)
   end
 
@@ -35,7 +35,7 @@ feature 'Admin registers a valid category' do
     click_on 'Registrar uma categoria'
     fill_in 'Nome', with: 'SITES'
     fill_in 'Código', with: 'HOSP'
-    click_on 'Criar categoria'
+    click_on 'Salvar categoria'
 
     expect(page).to have_content('deve ser único')
   end

@@ -11,7 +11,7 @@ feature 'Admin manages category status ' do
         within('div#category_permission') do
             select("Allow", from: 'Autorizar para Promoção?').select_option
         end
-        click_on 'Criar categoria'
+        click_on 'Salvar categoria'
         visit product_categories_path
         click_on ('Hospedagem')
         expect(page).to have_content('Hospedagem')
@@ -26,7 +26,7 @@ feature 'Admin manages category status ' do
     
         visit edit_product_category_path(category)
         select("Disallow", from: "Autorizar para Promoção?").select_option
-        click_on 'Criar categoria'
+        click_on 'Salvar categoria'
 
         visit product_categories_path
         click_on ('Hospedagem')

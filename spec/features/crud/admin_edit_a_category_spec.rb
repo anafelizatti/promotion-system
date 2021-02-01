@@ -12,7 +12,7 @@ feature 'Admin edits a category' do
     click_on 'Editar'
     fill_in 'Nome', with: 'EMAIL'
     fill_in 'Código', with: 'EM10'
-    click_on 'Criar categoria'
+    click_on 'Salvar categoria'
     visit product_categories_path
     expect(page).to have_content('EMAIL')
     expect(page).to have_content('EM10')

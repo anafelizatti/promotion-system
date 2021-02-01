@@ -7,7 +7,9 @@ feature 'Admin registers a valid promotion' do
     login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+    within 'div#body_links' do
+      click_on 'Promoções'
+    end
     click_on 'Registrar uma promoção'
     click_on 'Salvar'
 
@@ -24,7 +26,9 @@ feature 'Admin registers a valid promotion' do
                       expiration_date: '22/12/2033')
 
     visit root_path
-    click_on 'Promoções'
+    within 'div#body_links' do
+      click_on 'Promoções'
+    end
     click_on 'Registrar uma promoção'
     fill_in 'Código', with: 'NATAL10'
     click_on 'Salvar'

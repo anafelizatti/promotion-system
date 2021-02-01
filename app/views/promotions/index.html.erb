@@ -1,12 +1,13 @@
 <% if user_signed_in? %>
     <hr><strong><center><h2 style ="color:CadetBlue;"> Promoções </h2> <br>
-      <%= button_to "Registrar uma promoção", new_promotion_path, :method => "get" %></strong> <br>
+      <%= link_to "Registrar uma promoção", new_promotion_path, :method => "get", class: "btn btn-primary" %></strong> <br>
+      <br>
       <% if !@promotions.empty? %>
         <div id= 'promotion'>
-        <%= form_tag(promotions_path, method: :get) do %>
-            <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
-            <%= submit_tag 'Pesquisar' %>
-        <% end %></div><br>
+          <%= form_tag(promotions_path, method: :get) do %>
+              <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
+              <%= submit_tag 'Pesquisar' %>
+          <% end %></div><br>
         <div id= 'coupons'>
         <%= form_tag(search_coupons_path, method: :get) do %>
             <%= text_field_tag 'search', '', placeholder: 'Código de cupom' %> |
@@ -20,6 +21,7 @@
       <% else %>
       <center><p>Nenhuma promoção cadastrada </p></center>
       <% end %>
+      <%= link_to 'Voltar', root_path, class: "btn" %>
 <% else %>
   <%= link_to 'Login', new_user_session_path %>
 <% end %>

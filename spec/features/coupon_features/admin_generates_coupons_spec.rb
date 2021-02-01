@@ -8,7 +8,9 @@ feature 'Admin generates coupons' do
         login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+        within 'div#body_links' do
+            click_on 'Promoções'
+        end
     click_on promotion.name
     expect(current_path).to eq(promotion_path(promotion))
     click_on 'Emitir Cupons'

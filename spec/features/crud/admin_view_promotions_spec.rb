@@ -14,7 +14,9 @@ feature 'Admin view promotions' do
     login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+    within 'div#body_links' do
+      click_on 'Promoções'
+    end
 
     expect(page).to have_content('Natal')
     expect(page).to have_content('Promoção de Natal')
@@ -53,7 +55,9 @@ feature 'Admin view promotions' do
     login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+    within 'div#body_links' do
+      click_on 'Promoções'
+    end
 
     expect(page).to have_content('Nenhuma promoção cadastrada')
   end
@@ -64,7 +68,9 @@ feature 'Admin view promotions' do
     login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+    within 'div#body_links' do
+      click_on 'Promoções'
+    end
     click_on 'Página Inicial'
     expect(current_path).to eq root_path
   end
@@ -75,7 +81,9 @@ feature 'Admin view promotions' do
       login_as user, scope: :user
 
       visit root_path
-      click_on 'Promoções'
+      within 'div#body_links' do
+        click_on 'Promoções'
+      end
       click_on 'Dia do consumidor'
       click_on 'Voltar'
 
@@ -84,8 +92,11 @@ feature 'Admin view promotions' do
 
     scenario 'and cannot view promotions unless logged in' do
       visit root_path
-      
-      expect(page).to_not have_link('Promoções')
+      within 'div#navbar_links' do
+        click_on 'Promoções'
+      end
+      expect(page).to have_content('Para continuar, efetue login ou registre-se')
+      expect(current_path).to eq(new_user_session_path)
     end
 
     scenario 'and cannot view promotions unless logged in via link' do
@@ -93,7 +104,7 @@ feature 'Admin view promotions' do
       visit promotions_path
 
       expect(page).to_not have_content('Natal')
-      expect(page).to_not have_link('Promoções')
+      expect(page).to have_content('Para continuar, efetue login ou registre-se')
       expect(current_path).to eq(new_user_session_path)
     end
 

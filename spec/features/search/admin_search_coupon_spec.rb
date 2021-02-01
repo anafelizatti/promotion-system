@@ -14,7 +14,9 @@ feature 'Admin searchs coupons' do
         promotion.generate_coupons! #pra gerar os cupons da promoção anterior!
 
         visit root_path
-        click_on 'Promoções'
+        within 'div#body_links' do
+            click_on 'Promoções'
+          end
         within('div#coupons') do
             fill_in 'search', with: 'CYBER15-0001'
             click_on 'Pesquisar'
@@ -39,7 +41,9 @@ feature 'Admin searchs coupons' do
         promotion.generate_coupons!
 
         visit root_path
-        click_on 'Promoções'
+        within 'div#body_links' do
+            click_on 'Promoções'
+          end
         within('div#coupons') do
             fill_in 'search', with: 'CYBER15-001'
             click_on 'Pesquisar'

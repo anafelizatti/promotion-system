@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
+<center>
   <hr><strong><p style ="color:CadetBlue;"> Editar categoria de produto  </p></strong><hr>
-
+</center>
   <%= render 'form', product_categories: @product_categories %><br>
   <%= link_to 'VOLTAR', product_categories_path, class: "btn" %><br><br>
   <%= link_to 'HOME', root_path %>

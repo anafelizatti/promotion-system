@@ -1,16 +1,17 @@
 <%= render 'shared/errors', object: @product_categories %>
 
-<%= form_with model: @product_categories, local: true do |f| %>
-<%= f.label :name, 'Nome' %>
-<%= f.text_field :name %>
-<%= f.label :code, 'Código' %>
-<%= f.text_field :code %>
-<div id= 'category_permission'>
-<%= f.label :status, 'Autorizar para Promoção?' %>
-<%= f.select(:status, ProductCategory.statuses.keys.map {|key| [key.humanize, key]}) %>
+<div class="input-group input-group-lg">
+    <%= form_with model: @product_categories, local: true do |f| %>
+    <ul><%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %></ul>
+    <ul><%= f.label :code, 'Código' %>
+    <%= f.text_field :code %></ul>
+    <div id= 'category_permission'>
+        <ul><%= f.label :status, 'Autorizar para Promoção?' %>
+        <%= f.select(:status, ProductCategory.statuses.keys.map {|key| [key.humanize, key]}) %></ul>
+    </div>
+    <br>
+    <ul><%= f.submit 'Salvar categoria', class: 'btn btn-info'  %></ul>
 </div>
-<br>
-<br>
-<%= f.submit 'Criar categoria'  %>
 
 <% end %>

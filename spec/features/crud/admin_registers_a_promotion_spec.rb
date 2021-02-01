@@ -6,7 +6,9 @@ feature 'Admin registers a promotion' do
     login_as user, scope: :user
 
     visit root_path
-    click_on 'Promoções'
+      within 'div#body_links' do
+         click_on 'Promoções'
+      end
     click_on 'Registrar uma promoção'
     expect(current_path).to eq(new_promotion_path)
   end
@@ -19,8 +21,9 @@ feature 'Admin registers a promotion' do
     login_as user, scope: :user
 
     visit root_path
-
-    click_on 'Promoções'
+      within 'div#body_links' do
+        click_on 'Promoções'
+      end
     click_on 'Registrar uma promoção'
 
     fill_in 'Nome', with: 'Cyber Monday'
