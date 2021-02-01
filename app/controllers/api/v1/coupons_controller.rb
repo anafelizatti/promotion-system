@@ -14,6 +14,9 @@ module Api
             end
 
             def burn
+                return render json: 'Categoria não encontrada. Ação não pode ser realizada',
+                status: :unauthorized unless @coupon.category_is_valid? params[:category]
+
                 @coupon.burn!(params.dig(:order, :code))
                 render json: 'Cupom utilizado com sucesso', status: 200
               rescue ActiveRecord::RecordInvalid

@@ -53,9 +53,8 @@ describe 'Coupon management' do
             expect(response.body).to include('Cupom utilizado com sucesso')
             expect(coupon.reload).to be_burn
             expect(coupon.reload.order).to eq('ORDER123')
-          end
+        end
       
-
         it 'coupon not found by code' do
             post "/api/v1/coupons/COUPON-0002/burn", params: { order: { code: 'ORDER123'} }
             expect(response).to have_http_status(:not_found)

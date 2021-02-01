@@ -1,9 +1,7 @@
 class Coupon < ApplicationRecord
     belongs_to :promotion, dependent: :destroy
     scope :search, ->(query) {where('code equal ?', "%#{query}%")}
-    
     enum status: {active: 0, inactivate: 10, burn: 20}
-
     validates :order, presence: true, on: :coupon_burn
 
     def title
@@ -19,7 +17,6 @@ class Coupon < ApplicationRecord
       self.order = order
       self.status = :burn
       save!(context: :coupon_burn)
-
       #raise ActiveRecord::RecordInvalid unless order.present?
       #update!(order: order, status: :burn)
       #save! levanta o mesmo erro do RecordInvalid, então o rescue continua funcionando no controller.
@@ -37,5 +34,9 @@ class Coupon < ApplicationRecord
       promotion.expiration_date < Date.current
     end
 
+    def category_is_valid?(category)
+      return true if self.promotion.product_categories.count == 0 || (category.nill? && self.promotion.product_categories.find_by(code: category))
+      false
+    end
 
 end
