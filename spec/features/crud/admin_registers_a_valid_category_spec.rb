@@ -37,7 +37,7 @@ feature 'Admin registers a valid category' do
     fill_in 'Código', with: 'HOSP'
     click_on 'Salvar categoria'
 
-    expect(page).to have_content('deve ser único')
+    expect(page).to have_content('Código já está em uso')
   end
 
 end
