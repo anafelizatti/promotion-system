@@ -11,5 +11,7 @@
     <dd>Desconto: <%= @coupon.promotion.discount_rate %>% </dd>
     <dd>Data de término: <%= @coupon.expiration_date %> </dd>
     <br>
-    <%= link_to 'Voltar', promotions_path, class: "btn" %>
+     <%= link_to promotions_path do %>
+        <i class="fa fa-angle-double-left"></i> Voltar
+      <% end %>
 <% end %>

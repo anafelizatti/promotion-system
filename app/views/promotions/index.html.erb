@@ -21,7 +21,9 @@
       <% else %>
       <center><p>Nenhuma promoção cadastrada </p></center>
       <% end %>
-      <%= link_to 'Voltar', root_path, class: "btn" %>
-<% else %>
+      <%= link_to root_path do %>
+        <i class="fa fa-angle-double-left"></i> Voltar
+      <% end %>
+  <% else %>
   <%= link_to 'Login', new_user_session_path %>
 <% end %>

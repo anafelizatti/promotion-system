@@ -5,9 +5,11 @@
   <p> <%= @product_categories.code %> </p>
   <p> <strong> <%= @product_categories.permission %> </p></strong>
   <hr>
-  <%= link_to 'Voltar', product_categories_path, class: "btn" %>
-  <%= link_to 'Editar', edit_product_category_path(@product_categories) %>
-  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}%>
+  <%= link_to product_categories_path do %>
+    <i class="fa fa-angle-double-left"></i> Voltar | 
+  <% end %>
+  <%= link_to 'Editar', edit_product_category_path(@product_categories), class: "btn btn-primary" %>
+  <%= link_to 'Deletar', @promotion, method: :delete, data: {confirm: 'Confirmar ação?'}, class: "btn btn-danger"%>
 
 <% else %>
   <%= link_to 'Login', new_user_session_path %>

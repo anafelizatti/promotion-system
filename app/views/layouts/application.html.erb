@@ -17,7 +17,7 @@
     <div class="container"> 
       <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <class="active">
-        <a style ="color:white;" href="/">Página Inicial</a> | 
+        <a style ="color:white;" href="/">Página Inicial <i class="fa fa-home"></i> </a>| 
         <a style ="color:white;" href="/promotions">Promoções</a> | 
         <a style ="color:white;" href="/product_categories">Categorias</a>
       </nav>
@@ -40,7 +40,8 @@
     <strong><%= link_to 'Categorias de produtos', product_categories_path %></strong>
     <hr>
     </div>
-    Logado como: <strong><%= current_user.email %></strong> <br>
+    <center>
+    <i class="fa fa-user-circle"></i> <strong><%= current_user.email %></strong> <br>
     <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     </center>

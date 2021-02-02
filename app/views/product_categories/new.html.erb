@@ -2,8 +2,15 @@
   <hr><strong> <p style ="color:CadetBlue;"> Nova categoria de produto</p></strong>
   <hr>
   <%= render 'form', product_categories: @product_categories %> <br>
-  <%= link_to 'VOLTAR', product_categories_path, class: "btn" %> <br> <br>
-  <%= link_to 'HOME', root_path %>
+   <center>
+  <%= link_to product_categories_path do %>
+    <i class="fa fa-angle-double-left"></i> Voltar | 
+  <% end %>
+
+  <%= link_to root_path do %>
+    <i class="fa fa-home"></i> Home
+  <% end %>
+  </center>
 <% else %>
   <%= link_to 'Login', new_user_session_path %>
 <% end %>
