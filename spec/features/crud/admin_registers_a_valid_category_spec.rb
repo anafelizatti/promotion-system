@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin registers a valid category' do
+describe 'ProductCategory' do
   it 'successfully' do
     user = create(:user)
     login_as user, scope: :user

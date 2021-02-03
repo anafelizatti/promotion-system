@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Promotion do
-  context 'validation' do
+  context 'when validation' do
     it 'attributes cannot be blank' do
       promotion = Promotion.new
       promotion.save
@@ -30,8 +30,7 @@ describe Promotion do
     end
   end
 
-  # context é como se fosse feature que é como o describe, e o it é como se fosse um scenario.
-  describe '#generate_coupons!' do
+  describe 'Coupon' do
     it 'of a promotion without coupons' do
       promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
                                     discount_rate: 10, code: 'PASCOA10', expiration_date: 1.day.from_now)

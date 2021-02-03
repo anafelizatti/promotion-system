@@ -1,10 +1,8 @@
 require 'rails_helper'
 
-describe 'Admin searchs promotions' do
+describe 'Promotion' do
   it 'successfully' do
-    promotion = Promotion.create!(name: 'Dia do consumidor', description: 'Promoção dia dos consumidores',
-                                  code: 'CONS10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+    promotion = create(:promotion)
 
     user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
     login_as user, scope: :user

@@ -8,7 +8,6 @@ class Coupon < ApplicationRecord
     "#{code} (#{Coupon.human_attribute_name("status.#{status}")})"
   end
 
-  # sobrescrever o método as_jason do cupom
   def as_json(options = {})
     super({ methods: %i[discount_rate expiration_date],
             only: %i[] }.merge(options))
@@ -20,7 +19,7 @@ class Coupon < ApplicationRecord
     save!(context: :coupon_burn)
     # raise ActiveRecord::RecordInvalid unless order.present?
     # update!(order: order, status: :burn)
-    # save! levanta o mesmo erro do RecordInvalid, então o rescue continua funcionando no controller.
+    # save! levanta o mesmo erro do RecordInvalid, entao o rescue continua funcionando no controller.
   end
 
   delegate :discount_rate, to: :promotion
@@ -34,7 +33,7 @@ class Coupon < ApplicationRecord
   end
 
   def category_is_valid?(category)
-    if promotion.product_categories.count == 0 || (category.nill? && promotion.product_categories.find_by(code: category))
+    if promotion.product_categories.count.zero? || (category.nill? && promotion.product_categories.find_by(code: category))
       return true
     end
 

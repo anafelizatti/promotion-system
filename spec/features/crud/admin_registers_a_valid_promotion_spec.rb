@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin registers a valid promotion' do
+describe 'Promotion' do
   it 'and attributes cannot be blank' do
     user = create(:user)
     login_as user, scope: :user

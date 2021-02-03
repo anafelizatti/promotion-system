@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin view product categories' do
+describe 'ProductCategory' do
   it 'successfully' do
     ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
     ProductCategory.create!(name: 'E-mail', code: 'EMAIL')

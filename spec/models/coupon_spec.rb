@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Coupon, type: :model do
-  describe '#title' do
+  describe 'Coupon' do
     it 'status default' do
       coupon = Coupon.new(code: 'NATAL10-0001')
       expect(coupon.title).to eq('NATAL10-0001 (disponível)')

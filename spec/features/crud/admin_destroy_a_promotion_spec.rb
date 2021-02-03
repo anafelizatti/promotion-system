@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin destroys a promotion' do
+describe 'Promotion' do
   it 'sucessfully' do
     promotion = create(:promotion)
     user = create(:user)

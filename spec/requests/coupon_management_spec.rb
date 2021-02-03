@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Coupon management' do
-  context 'show' do
+describe 'Coupon' do
+  context 'when show' do
     it 'render coupon json with discout' do
       promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                                     description: 'Promoção de Cyber Monday',
@@ -36,7 +36,7 @@ describe 'Coupon management' do
     end
   end
 
-  context 'burn' do
+  context 'when burn' do
     it 'change coupon status' do
       promotion = Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                                     description: 'Promoção de Cyber Monday',

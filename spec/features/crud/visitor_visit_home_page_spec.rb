@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitor visit home page' do
+describe 'Promotion' do
   it 'successfully' do
     visit root_path
 

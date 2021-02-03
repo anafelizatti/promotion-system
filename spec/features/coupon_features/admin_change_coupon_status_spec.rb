@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin change coupon status' do
+describe 'Coupon' do
   it 'and inactivated it' do
     promotion = create(:promotion)
     coupon = Coupon.create!(promotion: promotion, code: 'CYBER15-0001')

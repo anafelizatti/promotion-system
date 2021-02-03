@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registration' do
+describe 'User' do
   it 'receive welcome message if domain is locaweb' do
     User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
 

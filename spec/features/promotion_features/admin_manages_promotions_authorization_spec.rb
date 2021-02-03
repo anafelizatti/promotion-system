@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin manages promotions authorization' do
+describe 'Promotion' do
   xit 'and only generates coupons if category status is allowed' do
     user = create(:user)
     login_as user, scope: :user

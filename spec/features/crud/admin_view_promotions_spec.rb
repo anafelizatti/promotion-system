@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin view promotions' do
+describe 'Promotion' do
   it 'successfully' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,

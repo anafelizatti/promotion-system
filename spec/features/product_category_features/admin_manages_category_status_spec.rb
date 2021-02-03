@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin manages category status ' do
+describe 'ProductCategory' do
   it ' and save category with status default ' do
     user = create(:user)
     login_as user, scope: :user

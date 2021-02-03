@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin searchs coupons' do
+describe 'Coupon' do
   it 'successfully' do
     user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')
     login_as user, scope: :user
@@ -9,7 +9,7 @@ describe 'Admin searchs coupons' do
                                   description: 'Promoção de Cyber Monday',
                                   code: 'CYBER15', discount_rate: 15,
                                   expiration_date: '22/12/2033')
-    promotion.generate_coupons! # pra gerar os cupons da promoção anterior!
+    promotion.generate_coupons!
 
     visit root_path
     within 'div#body_links' do

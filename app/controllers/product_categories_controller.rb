@@ -1,5 +1,5 @@
 class ProductCategoriesController < ApplicationController
-  before_action :set_product_categories, only: %i[show destroy edit update allowed disallowed]
+  before_action :set_product_categories, only: %i[show destroy edit update]
   before_action :authenticate_user!
 
   def index

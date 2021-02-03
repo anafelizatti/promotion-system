@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ProductCategory do
-  context 'validation' do
+  context 'when validation' do
     it 'attributes cannot be blank' do
       product_category = ProductCategory.new
       product_category.save

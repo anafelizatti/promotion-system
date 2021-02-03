@@ -2,7 +2,7 @@ class Promotion < ApplicationRecord
   has_many :coupons, dependent: :destroy
   has_many :product_category_promotions, dependent: :destroy
   has_many :product_categories, through: :product_category_promotions, dependent: :destroy
-  # pural de product_categories, pq são várias; e passa a tabela (plural) pra unir - join table)
+  # pural de product_categories, pq sao varias; e passa a tabela (plural) pra unir - join table)
 
   validates :name, :code, :discount_rate, :coupon_quantity, :expiration_date,
             presence: true
@@ -22,7 +22,7 @@ class Promotion < ApplicationRecord
         { code: "#{code}-#{'%04d' % number}" }
       end
     coupons
-      .create_with(created_at: Time.now, updated_at: Time.now)
+      .create_with(created_at: Time.zone.now, updated_at: Time.zone.now)
       .insert_all!(codes)
   end
 end

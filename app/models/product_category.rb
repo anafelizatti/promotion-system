@@ -12,5 +12,5 @@ class ProductCategory < ApplicationRecord
 end
 
 # TODO
-# registrar uma promoção com categoria, e se essa categoria tiver status = allow , permitir a emissão de cupons.
+# registrar uma promocaoo com categoria, e se essa categoria tiver status = allow , permitir a emissao de cupons.
 

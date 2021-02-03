@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Coupon category management' do
+describe 'Coupon' do
 
-    context 'validates category'
+    context ' when validates category' do
         it 'coupon cannot be burned unless category is present' do
             promotion = create(:promotion)
             product_category = create (:product_category)

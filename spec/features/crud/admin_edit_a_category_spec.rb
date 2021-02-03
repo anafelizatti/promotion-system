@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin edits a category' do
+describe 'ProductCategory' do
   it 'sucessfully' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
     user = create(:user)

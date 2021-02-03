@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin registers a promotion' do
+describe 'Promotion' do
   it 'from index page' do
     user = create(:user)
     login_as user, scope: :user

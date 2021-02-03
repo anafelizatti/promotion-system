@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin edits a promotion' do
+describe 'Promotion' do
   it 'if logged in' do
     promotion = create(:promotion)
     user = create(:user)

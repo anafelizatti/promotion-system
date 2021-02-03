@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin search category' do
+describe 'ProductCategory' do
   it 'successfully' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
     user = User.create!(email: 'jane_doe@locaweb.com.br', password: '123456')

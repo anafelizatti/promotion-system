@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin generates coupons' do
+describe 'Coupon' do
   it 'with coupons quantity available' do
     promotion = Promotion.create!(name: 'Pascoa', coupon_quantity: 3,
                                   discount_rate: 10, code: 'PASCOA10', expiration_date: 1.day.from_now)
