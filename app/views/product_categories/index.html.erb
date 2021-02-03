@@ -2,16 +2,25 @@
     <hr><strong><center><h2 style ="color:CadetBlue;"> Categoria de produto  </h2></strong><br>
     <%= link_to 'Registrar uma categoria', new_product_category_path, class: "btn btn-primary" %> 
         <br>
+        <br>
         <% if !@product_categories.empty? %>
             <div id='categories'>
                 <%= form_tag(product_categories_path, method: :get) do %>
-                    <%= text_field_tag 'search', nil, placeholder: 'Buscar categoria' %>
-                    <%= submit_tag 'Pesquisar' %>
+                    <%= text_field_tag 'search', nil, placeholder: 'Buscar categoria' %> |
+                    <%= submit_tag 'Pesquisar',class: 'btn btn-white'  %>
                 <% end %> </center> <hr>
             </div><br>
+
+        <table class="table">
+            <th><h5 style ="color:DarkSlateGray;">Nome</h5></th>
+            <th><h5 style ="color:DarkSlateGray;">Código</h5></th>
+        </table>
+        
+        <table class="table">
             <% @product_categories.each do |product_category| %>
-                <h3> <%= link_to product_category.name, product_category %> </h3>
-                <h3> <%= product_category.code %> </h3>
+                <td> <%= link_to product_category.name, product_category %> </td>
+                <td> <%= product_category.code %> </td>
+        </table>
             <% end %>
         <% else %>
             <br>
@@ -23,5 +32,3 @@
 <% else %>
     <%= link_to 'Login', new_user_session_path %>
 <% end %>
-
- 

@@ -6,17 +6,26 @@
         <div id= 'promotion'>
           <%= form_tag(promotions_path, method: :get) do %>
               <%= text_field_tag 'search','', placeholder: 'Promoção' %> |
-              <%= submit_tag 'Pesquisar' %>
+              <%= submit_tag 'Pesquisar', class: 'btn btn-white' %>
           <% end %></div><br>
         <div id= 'coupons'>
         <%= form_tag(search_coupons_path, method: :get) do %>
             <%= text_field_tag 'search', '', placeholder: 'Código de cupom' %> |
-            <%= submit_tag 'Pesquisar' %>
+            <%= submit_tag 'Pesquisar', class: 'btn btn-white' %>
         <% end %></div> </center><hr>
+        
+        <table class="table">
+        <th><h5 style ="color:DarkSlateGray;">Nome</h5></th>
+        <th><h5 style ="color:DarkSlateGray;">Descrição</h5></th>
+        <th><h5 style ="color:DarkSlateGray;">Desconto</h5></th>
+        </table>
+        
+        <table class="table">
         <% @promotions.each do |promotion| %>
-          <h3> <%= link_to promotion.name, promotion %></h3>
-          <p><%= promotion.description %></p>
-          <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %> </p>
+          <td><strong> <%= link_to promotion.name, promotion %></strong></td>
+          <td><%= promotion.description %></td>
+          <td><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %></td>
+        </table>
         <% end %>
       <% else %>
       <center><p>Nenhuma promoção cadastrada </p></center>

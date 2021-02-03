@@ -1,12 +1,11 @@
-<br>
-<form>
-<strong>Código</strong>
-<dd><%=coupon.title %></dd>
-<%if coupon.active? %>
-    <%= link_to t('.inactivate'), inactivate_coupon_path(coupon), method: :post  %>
-<% else %>
-    <%= link_to t('.active'), active_coupon_path(coupon), method: :post %>
-<% end %>
-<br>
-</form>
-
+<table class="table table-hover">
+  <tr>  
+  <% Coupon.human_attribute_name(:code) %>
+    <td><%= coupon.title %></td>
+    <% if coupon.active? %>
+    <td><%= link_to t('.inactivate'), inactivate_coupon_path(coupon), method: :post %></td>
+    <% else %>
+    <td><%= link_to t('.active'), active_coupon_path(coupon), method: :post %></td>
+    <% end %>
+  </tr>
+</table>

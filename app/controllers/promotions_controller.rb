@@ -37,7 +37,7 @@ class PromotionsController < ApplicationController
 
   def destroy
     @promotion.destroy
-    redirect_to root_path
+    redirect_to promotions_path
   end
 
   def generate_coupons

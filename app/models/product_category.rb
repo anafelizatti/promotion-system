@@ -7,7 +7,7 @@ class ProductCategory < ApplicationRecord
     enum status: {allow: 0, disallow: 10}
 
     def permission 
-        "Status para promoção: #{ProductCategory.human_attribute_name("status.#{status}")}"
+        "Status de categoria da promoção: #{ProductCategory.human_attribute_name("status.#{status}")}"
     end
 
 end

@@ -29,18 +29,11 @@
           <% end %>
         <% end %><hr>
     
-    <% if @promotion.coupons.empty? &&
-          @promotion.product_categories.allow %>
-        <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post, class: "btn btn-primary" %>
-    <% else %> >
-        <% if @promotion.coupons.empty? &&
-          @promotion.product_categories.permission.dissalow %> 
-          <p style ="color:Red;"> Categoria não autorizada promoção </p>
-          <p> link_to 'Ir para categorias', product_categories_path </p>
-        <% else %> >
-          <h3 style ="color:CadetBlue;"> Cupons </h3>
-          <%= render @promotion.coupons %>
-        <% end %>
+    <% if @promotion.coupons.empty? %>
+      <%= link_to 'Emitir Cupons', generate_coupons_promotion_path, method: :post, class: "btn btn-primary" %>
+    <% else %>
+      <h3 style ="color:CadetBlue;"> Cupons </h3>
+      <%= render @promotion.coupons %>
     <% end %>
       
 <% else %>

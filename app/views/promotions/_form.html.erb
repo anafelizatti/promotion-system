@@ -1,23 +1,26 @@
 <%= render 'shared/errors', object: @promotion %>
-
-<%= form_with model: @promotion do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :description %>
-<%= f.text_field :description %>
-<%= f.label :code, 'Código' %>
-<%= f.text_field :code %>
-<%= f.label :discount_rate %>
-<%= f.number_field :discount_rate %>
-<%= f.label :coupon_quantity %>
-<%= f.number_field :coupon_quantity %>
-<%= f.label :expiration_date, 'Data de término' %>
-<%= f.date_field :expiration_date %>
-<%= f.submit 'Salvar'  %>
-<hr>
-<p> Selecione as categorias associadas a esta promoção </p>
-<%= f.label :product_category_ids, 'Categorias' %>
-<br>
-<%= f.collection_check_boxes :product_category_ids, ProductCategory.all, :id, :name %>
+  
+  <%= form_with model: @promotion do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %>
+  <%= f.label :code, 'Código' %>
+  <%= f.text_field :code, class: "form-control" %>
+  <%= f.label :discount_rate %>
+  <%= f.number_field :discount_rate, class: "form-control" %>
+  <%= f.label :coupon_quantity %>
+  <%= f.number_field :coupon_quantity, class: "form-control" %>
+  <%= f.label :expiration_date, 'Data de término' %>
+  <%= f.date_field :expiration_date, class: "form-control" %>
+  <br>
+  <hr>
+  <p> <strong> Selecione se categorias associadas a esta promoção </p></strong>
+  <%= f.label :product_category_ids, 'Válidas:' %>
+  <br>
+  <%= f.collection_check_boxes :product_category_ids, ProductCategory.all, :id, :name, class: "form-control"%>
+  <br>
+  <hr>
+  <%= f.submit 'Salvar', class:"btn btn-primary"  %>
 
 <% end %>
