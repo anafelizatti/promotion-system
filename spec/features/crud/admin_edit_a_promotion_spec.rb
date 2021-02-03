@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-feature 'Admin edits a promotion' do
-  
-  scenario 'if logged in' do
+describe 'Admin edits a promotion' do
+  it 'if logged in' do
     promotion = create(:promotion)
     user = create(:user)
     login_as user, scope: :user
@@ -28,10 +27,9 @@ feature 'Admin edits a promotion' do
     expect(page).to have_link('Voltar')
   end
 
-  scenario 'and cannot edit unless logged in' do
+  it 'and cannot edit unless logged in' do
     promotion = create(:promotion)
     visit edit_promotion_path(promotion)
     expect(page).to have_content('Para continuar, efetue login ou registre-se.')
   end
-
 end

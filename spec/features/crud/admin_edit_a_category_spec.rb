@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-feature 'Admin edits a category' do
-  
-  scenario 'sucessfully' do
+describe 'Admin edits a category' do
+  it 'sucessfully' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
     user = create(:user)
     login_as user, scope: :user
-    
+
     visit product_categories_path
     click_on category.name
     click_on 'Editar'
@@ -18,11 +17,10 @@ feature 'Admin edits a category' do
     expect(page).to have_content('EM10')
   end
 
-  scenario 'and cannot edit unless logged in' do
+  it 'and cannot edit unless logged in' do
     category = ProductCategory.create!(name: 'Hospedagem', code: 'HOSP')
     visit product_categories_path(category)
-    expect(page).to_not have_content(category)
+    expect(page).not_to have_content(category)
     expect(page).to have_content('Para continuar, efetue login ou registre-se')
   end
-
 end

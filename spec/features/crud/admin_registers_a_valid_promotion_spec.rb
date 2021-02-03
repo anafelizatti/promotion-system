@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-feature 'Admin registers a valid promotion' do
-  scenario 'and attributes cannot be blank' do
-
+describe 'Admin registers a valid promotion' do
+  it 'and attributes cannot be blank' do
     user = create(:user)
     login_as user, scope: :user
 
@@ -16,8 +15,7 @@ feature 'Admin registers a valid promotion' do
     expect(page).to have_content('não pode ficar em branco', count: 5)
   end
 
-  scenario 'and code must be unique' do
-    
+  it 'and code must be unique' do
     user = create(:user)
     login_as user, scope: :user
 
@@ -36,7 +34,7 @@ feature 'Admin registers a valid promotion' do
     expect(page).to have_content('já está em uso')
   end
 
-  scenario 'and coupon quantity must be greater than 0' do
+  it 'and coupon quantity must be greater than 0' do
     user = create(:user)
     login_as user, scope: :user
 
@@ -53,6 +51,5 @@ feature 'Admin registers a valid promotion' do
 
     expect(page).to have_content('Quantidade de cupons Deve ser maior que 0')
   end
-
 end
 

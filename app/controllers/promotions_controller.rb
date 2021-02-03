@@ -1,18 +1,18 @@
 class PromotionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_promotion, only: %i[show edit update destroy generate_coupons]
- 
+
   def index
-    if params[:search]
-      @promotions = Promotion.search(params[:search])
-    else
-      @promotions = Promotion.all
-    end
+    @promotions = if params[:search]
+                    Promotion.search(params[:search])
+                  else
+                    Promotion.all
+                  end
   end
 
-  def show;end
+  def show; end
 
-  def edit;end
+  def edit; end
 
   def new
     @promotion = Promotion.new
@@ -23,7 +23,7 @@ class PromotionsController < ApplicationController
     if @promotion.save
       redirect_to @promotion
     else
-       render :new
+      render :new
     end
   end
 
@@ -46,7 +46,7 @@ class PromotionsController < ApplicationController
     redirect_to @promotion
   end
 
-private 
+  private
 
   def set_promotion
     @promotion = Promotion.find(params[:id])
@@ -54,10 +54,9 @@ private
 
   def promotion_params
     params
-    .require(:promotion)
-    .permit(:name, :description, :code, :discount_rate,
-    :expiration_date, :coupon_quantity,
-    product_category_ids: [])
+      .require(:promotion)
+      .permit(:name, :description, :code, :discount_rate,
+              :expiration_date, :coupon_quantity,
+              product_category_ids: [])
   end
-
 end
