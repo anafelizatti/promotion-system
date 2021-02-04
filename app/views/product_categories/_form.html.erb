@@ -6,10 +6,6 @@
     <%= f.text_field :name, class: "form-control" %></ul>
     <ul><%= f.label :code, 'Código' %>
     <%= f.text_field :code , class: "form-control" %></ul>
-    <div id= 'category_permission'>
-        <ul><%= f.label :status, 'Autorizar para Promoção?' %>
-        <%= f.select(:status, ProductCategory.statuses.keys.map {|key| [key.humanize, key]}) %></ul>
-    </div>
     <br>
     <ul><%= f.submit 'Salvar categoria', class: 'btn btn-info'  %></ul>
 </div>
