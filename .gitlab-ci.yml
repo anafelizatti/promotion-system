@@ -8,6 +8,9 @@ build:
         -echo "Testando CI"
         -mkdir teste
         -touch mkdir/teste.txt
+    artifacts:
+        paths:
+            teste/
 
 test:
     stage: test
