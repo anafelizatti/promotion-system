@@ -10,7 +10,7 @@ build:
         -touch mkdir/teste.txt
     artifacts:
         paths:
-            teste/
+            - teste/
 
 test:
     stage: test
