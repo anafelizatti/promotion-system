@@ -1,21 +1,38 @@
+image: "ruby:2.7"
+
+cache:
+    paths:
+    - vendor/bundle
+    - node_modules
+
+variables:
+    BUNDLE_PATH: vendor/bundle
+    NODE_VERSION: 12
+  
 stages:
-    - build
     - test
 
-build:
-    stage: build
+rspec:
+  stage: test
+  before_script:
+    - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash -
+    - apt-get update -yq
+    - apt-get install -y --no-install-recommends nodejs
+    - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+    - apt-get update -yq
+    - apt-get install -y yarn
+    
     script:
-        -echo "Testando CI"
-        -mkdir teste
-        -touch mkdir/teste.txt
-    artifacts:
-        paths:
-            - teste/
+    - bin/setup
+    - bundle exec rspec
 
-test:
-    stage: test
-    script:
-        - echo "Testando"
-        - test -f "build/teste.txt"
+  
+
+
+
+
+
+
 
         
