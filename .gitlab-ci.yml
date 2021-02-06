@@ -1,16 +1,17 @@
-image: "ruby:2.7"
+image: ruby:2.7.0
 
 cache:
-    paths:
+  paths:
     - vendor/bundle
     - node_modules
 
 variables:
-    BUNDLE_PATH: vendor/bundle
-    NODE_VERSION: 12
-  
+  BUNDLE_PATH: vendor/bundle
+  DISABLE_SPRING: 1
+  NODE_VERSION: 12
+
 stages:
-    - test
+  - test
 
 rspec:
   stage: test
@@ -22,17 +23,9 @@ rspec:
     - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
     - apt-get update -yq
     - apt-get install -y yarn
-    
-    script:
+  script:
     - bin/setup
     - bundle exec rspec
-
-  
-
-
-
-
-
 
 
         
