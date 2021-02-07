@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_132359) do
+ActiveRecord::Schema.define(version: 2021_02_07_141257) do
 
   create_table "coupons", force: :cascade do |t|
     t.integer "promotion_id", null: false
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(version: 2021_02_04_132359) do
     t.date "expiration_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "receptor_user_id"
+    t.date "approved_at"
+    t.integer "source_user_id"
+    t.index ["code"], name: "index_promotions_on_code", unique: true
   end
 
   create_table "users", force: :cascade do |t|
