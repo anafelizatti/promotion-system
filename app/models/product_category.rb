@@ -5,4 +5,3 @@ class ProductCategory < ApplicationRecord
   validates :name, :code, uniqueness: true
   scope :search, ->(query) { where('name like ? OR code like ?', "%#{query}%", "%#{query}%") }
 end
-
